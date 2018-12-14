@@ -6,11 +6,10 @@ import (
 	"strings"
 )
 
-func Execution(h Host, cmd string) (std Std, sshErr SshError) {
+func Execution(h Host, pws []string, cmd string) (std Std, sshErr SshError) {
 
-	client, sshErr := sshClient(h)
-	if sshErr.Content != nil {
-		//checkErr(sshErr)
+	client, sshErr := tryPassRetClient(h, pws)
+	if sshErr.Content != nil{
 		return
 	}
 
@@ -18,9 +17,10 @@ func Execution(h Host, cmd string) (std Std, sshErr SshError) {
 	if err != nil {
 		sshErr.Code = 3
 		sshErr.Content = err
-		//checkErr(sshErr)
 		return
 	}
+
+
 	defer session.Close()
 	defer client.Close()
 
@@ -31,35 +31,34 @@ func Execution(h Host, cmd string) (std Std, sshErr SshError) {
 	if err != nil {
 		sshErr.Code = 4
 		sshErr.Content = err
-		//checkErr(sshErr)
 		return
 	}
+
 
 	return
 }
 
-func ConcurrentExecutionProcess(cmdse CmdSession) (cmdRes []*CmdResult) {
+func ConcurrentExecutionProcess(cs *CmdSession) (cmdRes []*CmdResult) {
 
 	var wg sync.WaitGroup
-	exec := func(h Host) {
-		fmt.Println("in", h)
-		std, sshErr := Execution(h, cmdse.Cmd)
 
+	for _, h := range cs.Hosts {
 
-		cr := NewCmdResult(h.Addr,
-			strings.Replace(std.StdOut.String(), "\n", "", -1),
-			strings.Replace(std.StdErr.String(), "\n", "", -1),sshErr)
-
-		//fmt.Println(cr)
-
-		cmdRes = append(cmdRes, cr)
-		fmt.Println(cr)
-		wg.Done()
-	}
-
-	for _, host := range cmdse.Hosts {
 		wg.Add(1)
-		go exec(host)
+
+		go func(h Host) {
+
+			std, sshErr := Execution(h, cs.Passwords, cs.Cmd)
+
+			cr := NewCmdResult(
+				strings.Replace(std.StdOut.String(), "\n", "", -1),
+				strings.Replace(std.StdErr.String(), "\n", "", -1),
+				sshErr, h.Addr)
+
+			cmdRes = append(cmdRes, cr)
+			fmt.Println(cr)
+			wg.Done()
+		}(h)
 
 	}
 
@@ -67,3 +66,4 @@ func ConcurrentExecutionProcess(cmdse CmdSession) (cmdRes []*CmdResult) {
 	return
 
 }
+

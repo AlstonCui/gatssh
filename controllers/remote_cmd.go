@@ -9,21 +9,19 @@ type RemoteCmd struct {
 	baseController
 }
 
-func (this RemoteCmd)Post()  {
-	var cmdSession ssh.CmdSession
+func (this RemoteCmd) Post() {
 
-	//json.Unmarshal(this.Ctx.Input.RequestBody,&cmdSession)
+	var cs *ssh.CmdSession
 
+	err := json.NewDecoder(this.Ctx.Request.Body).Decode(&cs)
+	if err != nil {
+		this.ServeJSON(40000, err)
+		return
+	}
 
-	json.NewDecoder(this.Ctx.Request.Body).Decode(&cmdSession)
+	res := ssh.ConcurrentExecutionProcess(cs)
 
-	res:= ssh.ConcurrentExecutionProcess(cmdSession)
-
-
-
-
-	this.ServeJSON(20000,res)
+	this.ServeJSON(20000, res)
 	return
-
 
 }

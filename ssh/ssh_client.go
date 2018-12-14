@@ -1,20 +1,20 @@
 package ssh
 
 import (
-"golang.org/x/crypto/ssh"
-"time"
-"net"
-"fmt"
+	"golang.org/x/crypto/ssh"
+	"time"
+	"net"
+	"fmt"
 )
 
-func sshClient(h Host) (client *ssh.Client, sshErr SshError) {
+func sshClient(h Host, password string) (client *ssh.Client, sshErr SshError) {
 
 	config := &ssh.ClientConfig{
 
 		User:    h.User,
 		Timeout: 5 * time.Second,
 		Auth: []ssh.AuthMethod{
-			ssh.Password(h.Passwd),
+			ssh.Password(password),
 		},
 		HostKeyCallback: func(hostname string, remote net.Addr, key ssh.PublicKey) error {
 			return nil
@@ -25,21 +25,30 @@ func sshClient(h Host) (client *ssh.Client, sshErr SshError) {
 	if err != nil {
 		sshErr.Code = 1
 		sshErr.Content = err
-		//checkErr(sshErr)
 		return
 	}
-	//defer conn.Close()
 
 	c, chans, reqs, err := ssh.NewClientConn(conn, fmt.Sprintf("%s:%d", h.Addr, h.Port), config)
 	if err != nil {
 		sshErr.Code = 2
 		sshErr.Content = err
-		//checkErr(sshErr)
 		return
 	}
-	//defer c.Close()
 
 	client = ssh.NewClient(c, chans, reqs)
+
+	return
+}
+
+func tryPassRetClient(h Host, pws []string) (client *ssh.Client, sshErr SshError) {
+
+	for _, pw := range pws {
+		client, sshErr = sshClient(h, pw)
+		if sshErr.Code == 2 {
+			fmt.Println("unauthed")
+			continue
+		}
+	}
 
 	return
 }

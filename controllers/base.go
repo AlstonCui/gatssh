@@ -10,11 +10,6 @@ var log = beego.BeeLogger
 var HTTPCODE = map[int]string{
 	20000: "OK",
 	40000: "Bad Request",
-	40003: "Forbidden",
-	50001: "Internal Server Error",
-	50002: "DB NO DATA",
-	50003: "Data existed",
-	50004: "Data existed",
 }
 
 type baseResponse struct {
@@ -25,10 +20,7 @@ type baseResponse struct {
 
 type baseController struct {
 	beego.Controller
-	//userInfo *pb.ResponseUserInfo
 }
-
-
 
 func (this *baseController) ServeJSON(code int, data interface{}) {
 	msg := baseResponse{
@@ -49,7 +41,7 @@ func init() {
 func initLog() {
 
 	log.Reset()
-	logConfig := `{"filename":"tigcontroller.log","maxdays":7,"perm": "0644"}`
+	logConfig := `{"filename":"gatlin.log","maxdays":7,"perm": "0644"}`
 	if err := log.SetLogger(logs.AdapterFile, logConfig); err != nil {
 		panic(err)
 	}
