@@ -1,120 +1,15 @@
-2018/12/14 14:50:17.302 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 14:51:30.103 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 14:52:03.252 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 14:52:46.933 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 16:22:57.600 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:11:39.400 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:12:55.443 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:13:14.200 [C] [asm_amd64.s:573] the request url is  /v1/remoteCmd
-2018/12/14 17:13:14.200 [C] [asm_amd64.s:573] Handler crashed with error runtime error: invalid memory address or nil pointer dereference
-2018/12/14 17:13:14.200 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/asm_amd64.s:573
-2018/12/14 17:13:14.200 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/panic.go:502
-2018/12/14 17:13:14.201 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/panic.go:63
-2018/12/14 17:13:14.201 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/signal_unix.go:388
-2018/12/14 17:13:14.201 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/gatlin/ssh/ssh_exec.go:64
-2018/12/14 17:13:14.201 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/gatlin/controllers/remote_cmd.go:23
-2018/12/14 17:13:14.201 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/github.com/astaxie/beego/router.go:831
-2018/12/14 17:13:14.201 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:2694
-2018/12/14 17:13:14.201 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:2694
-2018/12/14 17:13:14.201 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:1830
-2018/12/14 17:13:14.201 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/asm_amd64.s:2361
-2018/12/14 17:13:20.731 [C] [asm_amd64.s:573] the request url is  /v1/remoteCmd
-2018/12/14 17:13:20.731 [C] [asm_amd64.s:573] Handler crashed with error runtime error: invalid memory address or nil pointer dereference
-2018/12/14 17:13:20.731 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/asm_amd64.s:573
-2018/12/14 17:13:20.731 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/panic.go:502
-2018/12/14 17:13:20.731 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/panic.go:63
-2018/12/14 17:13:20.731 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/signal_unix.go:388
-2018/12/14 17:13:20.731 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/gatlin/ssh/ssh_exec.go:64
-2018/12/14 17:13:20.731 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/gatlin/controllers/remote_cmd.go:23
-2018/12/14 17:13:20.731 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/github.com/astaxie/beego/router.go:831
-2018/12/14 17:13:20.731 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:2694
-2018/12/14 17:13:20.731 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:2694
-2018/12/14 17:13:20.731 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:1830
-2018/12/14 17:13:20.731 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/asm_amd64.s:2361
-2018/12/14 17:13:28.094 [C] [asm_amd64.s:573] the request url is  /v1/remoteCmd
-2018/12/14 17:13:28.094 [C] [asm_amd64.s:573] Handler crashed with error runtime error: invalid memory address or nil pointer dereference
-2018/12/14 17:13:28.094 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/asm_amd64.s:573
-2018/12/14 17:13:28.094 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/panic.go:502
-2018/12/14 17:13:28.094 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/panic.go:63
-2018/12/14 17:13:28.094 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/signal_unix.go:388
-2018/12/14 17:13:28.094 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/gatlin/ssh/ssh_exec.go:64
-2018/12/14 17:13:28.094 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/gatlin/controllers/remote_cmd.go:23
-2018/12/14 17:13:28.094 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/github.com/astaxie/beego/router.go:831
-2018/12/14 17:13:28.094 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:2694
-2018/12/14 17:13:28.094 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:2694
-2018/12/14 17:13:28.094 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:1830
-2018/12/14 17:13:28.094 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/asm_amd64.s:2361
-2018/12/14 17:13:29.459 [C] [asm_amd64.s:573] the request url is  /v1/remoteCmd
-2018/12/14 17:13:29.459 [C] [asm_amd64.s:573] Handler crashed with error runtime error: invalid memory address or nil pointer dereference
-2018/12/14 17:13:29.459 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/asm_amd64.s:573
-2018/12/14 17:13:29.459 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/panic.go:502
-2018/12/14 17:13:29.459 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/panic.go:63
-2018/12/14 17:13:29.459 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/signal_unix.go:388
-2018/12/14 17:13:29.459 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/gatlin/ssh/ssh_exec.go:64
-2018/12/14 17:13:29.459 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/gatlin/controllers/remote_cmd.go:23
-2018/12/14 17:13:29.459 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/github.com/astaxie/beego/router.go:831
-2018/12/14 17:13:29.459 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:2694
-2018/12/14 17:13:29.459 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:2694
-2018/12/14 17:13:29.459 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:1830
-2018/12/14 17:13:29.459 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/asm_amd64.s:2361
-2018/12/14 17:13:55.494 [C] [asm_amd64.s:573] the request url is  /v1/remoteCmd
-2018/12/14 17:13:55.494 [C] [asm_amd64.s:573] Handler crashed with error runtime error: invalid memory address or nil pointer dereference
-2018/12/14 17:13:55.494 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/asm_amd64.s:573
-2018/12/14 17:13:55.494 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/panic.go:502
-2018/12/14 17:13:55.494 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/panic.go:63
-2018/12/14 17:13:55.494 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/signal_unix.go:388
-2018/12/14 17:13:55.494 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/gatlin/ssh/ssh_exec.go:64
-2018/12/14 17:13:55.495 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/gatlin/controllers/remote_cmd.go:23
-2018/12/14 17:13:55.495 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/github.com/astaxie/beego/router.go:831
-2018/12/14 17:13:55.495 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:2694
-2018/12/14 17:13:55.495 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:2694
-2018/12/14 17:13:55.495 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:1830
-2018/12/14 17:13:55.495 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/asm_amd64.s:2361
-2018/12/14 17:13:59.832 [C] [asm_amd64.s:573] the request url is  /v1/remoteCmd
-2018/12/14 17:13:59.832 [C] [asm_amd64.s:573] Handler crashed with error runtime error: invalid memory address or nil pointer dereference
-2018/12/14 17:13:59.832 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/asm_amd64.s:573
-2018/12/14 17:13:59.832 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/panic.go:502
-2018/12/14 17:13:59.832 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/panic.go:63
-2018/12/14 17:13:59.832 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/signal_unix.go:388
-2018/12/14 17:13:59.832 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/gatlin/ssh/ssh_exec.go:64
-2018/12/14 17:13:59.832 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/gatlin/controllers/remote_cmd.go:23
-2018/12/14 17:13:59.832 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/github.com/astaxie/beego/router.go:831
-2018/12/14 17:13:59.832 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:2694
-2018/12/14 17:13:59.832 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:2694
-2018/12/14 17:13:59.832 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:1830
-2018/12/14 17:13:59.832 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/asm_amd64.s:2361
-2018/12/14 17:27:25.832 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:28:29.118 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:29:56.026 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:30:20.106 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:32:37.834 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:33:04.631 [C] [asm_amd64.s:573] the request url is  /v1/remoteCmd
-2018/12/14 17:33:04.631 [C] [asm_amd64.s:573] Handler crashed with error runtime error: invalid memory address or nil pointer dereference
-2018/12/14 17:33:04.631 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/asm_amd64.s:573
-2018/12/14 17:33:04.631 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/panic.go:502
-2018/12/14 17:33:04.631 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/panic.go:63
-2018/12/14 17:33:04.631 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/signal_unix.go:388
-2018/12/14 17:33:04.631 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/gatlin/ssh/ssh_exec.go:40
-2018/12/14 17:33:04.631 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/gatlin/controllers/remote_cmd.go:21
-2018/12/14 17:33:04.631 [C] [asm_amd64.s:573] /Users/cuihailong/go/src/github.com/astaxie/beego/router.go:831
-2018/12/14 17:33:04.631 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:2694
-2018/12/14 17:33:04.632 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:2694
-2018/12/14 17:33:04.632 [C] [asm_amd64.s:573] /usr/local/go/src/net/http/server.go:1830
-2018/12/14 17:33:04.632 [C] [asm_amd64.s:573] /usr/local/go/src/runtime/asm_amd64.s:2361
-2018/12/14 17:33:04.632 [server.go:2921] [HTTP] http: multiple response.WriteHeader calls
-2018/12/14 17:33:24.509 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:40:01.022 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:40:33.827 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:41:30.479 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:42:53.294 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:51:58.097 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:57:00.892 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:57:44.190 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:58:23.605 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 17:59:13.400 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 18:00:42.808 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 18:01:21.222 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 18:03:57.164 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 18:06:06.753 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 18:06:51.272 [I] [asm_amd64.s:2361] http server Running on http://:8080
-2018/12/14 18:07:14.488 [I] [asm_amd64.s:2361] http server Running on http://:8080
+2018/12/31 00:11:57.570 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2018/12/31 00:12:34.039 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2018/12/31 00:14:15.053 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2018/12/31 00:14:21.472 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2018/12/31 00:24:46.264 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2018/12/31 00:31:34.396 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2018/12/31 00:32:50.528 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2018/12/31 00:44:57.203 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2018/12/31 00:50:40.944 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2018/12/31 01:18:58.038 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2018/12/31 01:31:44.513 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2018/12/31 01:43:23.715 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2018/12/31 01:45:03.669 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2018/12/31 02:24:42.629 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2018/12/31 02:43:39.383 [I] [asm_amd64.s:1333] http server Running on http://:8080

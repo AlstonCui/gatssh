@@ -6,5 +6,6 @@ import (
 )
 
 func init() {
-	beego.Router("/v1/remoteCmd", &controllers.RemoteCmd{})
+	beego.Router("/v1/remoteCmd", &controllers.GatSshOneShoot{})
+	//beego.Router("/v1/remoteShell",&controllers.RemoteShell{})
 }
