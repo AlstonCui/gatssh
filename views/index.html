@@ -1,0 +1,260 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap-clearmin.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/roboto.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/material-design.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/small-n-flat.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.min.css">
+    <title>Clearmin template</title>
+</head>
+
+<body class="cm-1-navbar">
+<div id="cm-menu">
+    <nav class="cm-navbar cm-navbar-primary">
+        <div class="cm-flex"><a href="bak/index.bak" class=""></a></div>
+        <div class="btn btn-primary md-menu-white" data-toggle="cm-menu"></div>
+    </nav>
+    <div id="cm-menu-content">
+        <div id="cm-menu-items-wrapper">
+            <div id="cm-menu-scroller">
+                <ul class="cm-menu-items" style="transform: translateY(0px);">
+                    <li class="active"><a href="bak/index.bak" class="sf-house">Home</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<header id="cm-header">
+    <nav class="cm-navbar cm-navbar-primary">
+        <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
+        <div class="cm-flex">
+            <h1>Home</h1>
+            <form id="cm-search" action="bak/index.bak" method="get">
+                <input type="search" name="q" autocomplete="off" placeholder="Search...">
+            </form>
+        </div>
+
+
+        <div class="dropdown pull-right">
+            <button class="btn btn-primary md-account-circle-white" data-toggle="dropdown"></button>
+            <ul class="dropdown-menu">
+                <li class="disabled text-center">
+                    <a style="cursor:default;"><strong>John Smith</strong></a>
+                </li>
+                <li class="divider"></li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-fw fa-cog"></i> Settings</a>
+                </li>
+                <li>
+                    <a href="login.html"><i class="fa fa-fw fa-sign-out"></i> Sign out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+<div id="global">
+    <style>.demo-btn .btn {
+        margin: 5px
+    }</style>
+    <div class="container-fluid">
+        <div class="row cm-fix-height">
+            <form class="form-horizontal">
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">IP INPUT</div>
+                        <div class="panel-body" style="min-height: 228px;">
+                            <textarea id="iplist" class="form-control" rows="9"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">RUN</div>
+                        <div class="panel-body" style="min-height: 214px;">
+                            <div class="form-group">
+                                <label for="inputUsername" class="col-sm-2 control-label">Username</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputUsername"
+                                           placeholder="Username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputPassword3"
+                                           placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCommand" class="col-sm-2 control-label">Command</label>
+                                <div class="col-sm-10">
+                                    <input type="Command" class="form-control" id="inputCommand" placeholder="Command">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="remPass">
+                                            保存主机的密码
+                                        </label>
+                                        <label>
+                                            <input type="checkbox" name="usePassInDB">
+                                            使用保存的密码
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" style="margin-bottom:0">
+                                <div class="col-sm-offset-2 col-sm-10 text-right">
+                                    <button type="submit" class="btn btn-primary">RUN</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">RESULT</div>
+                    <div class="panel-body">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">SEARCH</button>
+                                    </span>
+                        </div>
+                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>IP</th>
+                            <th>状态码</th>
+                            <th>结果</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="active">
+                            <th scope="row">1</th>
+                            <td>active</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="success">
+                            <th scope="row">3</th>
+                            <td>success</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="info">
+                            <th scope="row">5</th>
+                            <td>info</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="warning">
+                            <th scope="row">7</th>
+                            <td>warning</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">8</th>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr class="danger">
+                            <th scope="row">9</th>
+                            <td>danger</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">10</th>
+                            <td>danger</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">11</th>
+                            <td>danger</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">9</th>
+                            <td>danger</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">9</th>
+                            <td>danger</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">9</th>
+                            <td>danger</td>
+                            <td>Column content</td>
+                            <td>Column content</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="cm-footer"><span class="pull-left">Connected as John Smith</span><span class="pull-right">© PAOMEDIA SARL</span>
+    </footer>
+</div>
+
+<script src="/static/js/lib/jquery-2.1.3.min.js"></script>
+<script src="/static/js/jquery.mousewheel.min.js"></script>
+<script src="/static/js/jquery.cookie.min.js"></script>
+<script src="/static/js/fastclick.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/clearmin.min.js"></script>
+<script src="/static/js/demo/home.js"></script>
+<div id="cm-menu-backdrop" class="visible-xs-block visible-sm-block"></div>
+<div id="cm-submenu-popover" class="dropdown">
+    <div data-toggle="dropdown"></div>
+    <div class="popover cm-popover right">
+        <div class="arrow"></div>
+        <div class="popover-content">
+            <ul></ul>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

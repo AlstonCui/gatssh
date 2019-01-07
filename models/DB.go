@@ -19,5 +19,6 @@ func init() {
 	db.AutoMigrate(&Host{}).AddUniqueIndex("idx_ip_owner", "ip", "owner")
 	db.AutoMigrate(&TaskRecord{})
 	db.AutoMigrate(&TaskDetail{})
+	db.AutoMigrate(&User{})
 
 }

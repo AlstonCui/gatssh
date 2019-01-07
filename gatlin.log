@@ -1,15 +1,411 @@
-2018/12/31 00:11:57.570 [I] [asm_amd64.s:1333] http server Running on http://:8080
-2018/12/31 00:12:34.039 [I] [asm_amd64.s:1333] http server Running on http://:8080
-2018/12/31 00:14:15.053 [I] [asm_amd64.s:1333] http server Running on http://:8080
-2018/12/31 00:14:21.472 [I] [asm_amd64.s:1333] http server Running on http://:8080
-2018/12/31 00:24:46.264 [I] [asm_amd64.s:1333] http server Running on http://:8080
-2018/12/31 00:31:34.396 [I] [asm_amd64.s:1333] http server Running on http://:8080
-2018/12/31 00:32:50.528 [I] [asm_amd64.s:1333] http server Running on http://:8080
-2018/12/31 00:44:57.203 [I] [asm_amd64.s:1333] http server Running on http://:8080
-2018/12/31 00:50:40.944 [I] [asm_amd64.s:1333] http server Running on http://:8080
-2018/12/31 01:18:58.038 [I] [asm_amd64.s:1333] http server Running on http://:8080
-2018/12/31 01:31:44.513 [I] [asm_amd64.s:1333] http server Running on http://:8080
-2018/12/31 01:43:23.715 [I] [asm_amd64.s:1333] http server Running on http://:8080
-2018/12/31 01:45:03.669 [I] [asm_amd64.s:1333] http server Running on http://:8080
-2018/12/31 02:24:42.629 [I] [asm_amd64.s:1333] http server Running on http://:8080
-2018/12/31 02:43:39.383 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2019/01/07 00:04:00.166 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2019/01/07 00:04:05.388 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:04:05] "GET / HTTP/1.1 302 0" 0.000621 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:04:05.399 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:04:05] "GET /login HTTP/1.1 200 0" 0.000934 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:04:06.807 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:04:06] "GET /user/loginauth?username=admin&password=123123 HTTP/1.1 302 0" 0.000427 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:04:06.813 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:04:06] "GET / HTTP/1.1 200 0" 0.000702 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:18:23.255 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:18:23] "GET / HTTP/1.1 200 0" 0.000951 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:25:05.748 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2019/01/07 00:25:11.495 [C] [asm_amd64.s:522] the request url is  /
+2019/01/07 00:25:11.495 [C] [asm_amd64.s:522] Handler crashed with error interface conversion: interface {} is nil, not string
+2019/01/07 00:25:11.495 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/asm_amd64.s:522
+2019/01/07 00:25:11.495 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/panic.go:513
+2019/01/07 00:25:11.495 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/iface.go:248
+2019/01/07 00:25:11.495 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/gatlin/controllers/base.go:42
+2019/01/07 00:25:11.495 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/github.com/astaxie/beego/router.go:812
+2019/01/07 00:25:11.495 [C] [asm_amd64.s:522] /usr/local/go/src/net/http/server.go:2741
+2019/01/07 00:25:11.495 [C] [asm_amd64.s:522] /usr/local/go/src/net/http/server.go:1847
+2019/01/07 00:25:11.495 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/asm_amd64.s:1333
+2019/01/07 00:29:22.396 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2019/01/07 00:29:24.896 [C] [asm_amd64.s:522] the request url is  /
+2019/01/07 00:29:24.896 [C] [asm_amd64.s:522] Handler crashed with error interface conversion: interface {} is nil, not string
+2019/01/07 00:29:24.896 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/asm_amd64.s:522
+2019/01/07 00:29:24.896 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/panic.go:513
+2019/01/07 00:29:24.896 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/iface.go:248
+2019/01/07 00:29:24.896 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/gatlin/controllers/base.go:42
+2019/01/07 00:29:24.896 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/github.com/astaxie/beego/router.go:812
+2019/01/07 00:29:24.896 [C] [asm_amd64.s:522] /usr/local/go/src/net/http/server.go:2741
+2019/01/07 00:29:24.896 [C] [asm_amd64.s:522] /usr/local/go/src/net/http/server.go:1847
+2019/01/07 00:29:24.896 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/asm_amd64.s:1333
+2019/01/07 00:29:30.061 [C] [asm_amd64.s:522] the request url is  /
+2019/01/07 00:29:30.061 [C] [asm_amd64.s:522] Handler crashed with error interface conversion: interface {} is nil, not string
+2019/01/07 00:29:30.061 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/asm_amd64.s:522
+2019/01/07 00:29:30.061 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/panic.go:513
+2019/01/07 00:29:30.061 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/iface.go:248
+2019/01/07 00:29:30.061 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/gatlin/controllers/base.go:42
+2019/01/07 00:29:30.061 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/github.com/astaxie/beego/router.go:812
+2019/01/07 00:29:30.061 [C] [asm_amd64.s:522] /usr/local/go/src/net/http/server.go:2741
+2019/01/07 00:29:30.061 [C] [asm_amd64.s:522] /usr/local/go/src/net/http/server.go:1847
+2019/01/07 00:29:30.061 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/asm_amd64.s:1333
+2019/01/07 00:32:01.060 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2019/01/07 00:32:15.115 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2019/01/07 00:33:31.139 [C] [asm_amd64.s:522] the request url is  /
+2019/01/07 00:33:31.139 [C] [asm_amd64.s:522] Handler crashed with error can't find templatefile in the path:views/maincontroller/get.tpl
+2019/01/07 00:33:31.139 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/asm_amd64.s:522
+2019/01/07 00:33:31.139 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/panic.go:513
+2019/01/07 00:33:31.139 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/github.com/astaxie/beego/template.go:73
+2019/01/07 00:33:31.139 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/github.com/astaxie/beego/controller.go:263
+2019/01/07 00:33:31.139 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/github.com/astaxie/beego/controller.go:214
+2019/01/07 00:33:31.139 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/github.com/astaxie/beego/controller.go:194
+2019/01/07 00:33:31.139 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/github.com/astaxie/beego/router.go:859
+2019/01/07 00:33:31.139 [C] [asm_amd64.s:522] /usr/local/go/src/net/http/server.go:2741
+2019/01/07 00:33:31.139 [C] [asm_amd64.s:522] /usr/local/go/src/net/http/server.go:1847
+2019/01/07 00:33:31.139 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/asm_amd64.s:1333
+2019/01/07 00:34:18.985 [C] [asm_amd64.s:522] the request url is  /
+2019/01/07 00:34:18.985 [C] [asm_amd64.s:522] Handler crashed with error can't find templatefile in the path:views/maincontroller/get.tpl
+2019/01/07 00:34:18.985 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/asm_amd64.s:522
+2019/01/07 00:34:18.985 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/panic.go:513
+2019/01/07 00:34:18.985 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/github.com/astaxie/beego/template.go:73
+2019/01/07 00:34:18.985 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/github.com/astaxie/beego/controller.go:263
+2019/01/07 00:34:18.985 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/github.com/astaxie/beego/controller.go:214
+2019/01/07 00:34:18.985 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/github.com/astaxie/beego/controller.go:194
+2019/01/07 00:34:18.985 [C] [asm_amd64.s:522] /Users/cuihailong/go/src/github.com/astaxie/beego/router.go:859
+2019/01/07 00:34:18.985 [C] [asm_amd64.s:522] /usr/local/go/src/net/http/server.go:2741
+2019/01/07 00:34:18.985 [C] [asm_amd64.s:522] /usr/local/go/src/net/http/server.go:1847
+2019/01/07 00:34:18.985 [C] [asm_amd64.s:522] /usr/local/go/src/runtime/asm_amd64.s:1333
+2019/01/07 00:35:53.201 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2019/01/07 00:36:01.951 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:01] "GET / HTTP/1.1 302 0" 0.000347  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:01.958 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:01] "GET /login HTTP/1.1 302 0" 0.000086  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.070 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000088  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.075 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000067  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.083 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000043  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.089 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000058  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.095 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000076  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.101 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000037  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.106 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000042  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.111 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000040  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.116 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000042  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.121 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000047  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.127 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000075  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.134 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000097  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.141 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000066  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.146 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000045  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.151 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000064  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.156 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000057  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.162 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000081  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.167 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000033  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.312 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000209  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.320 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000070  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.329 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000069  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.339 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000216  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.345 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000060  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.352 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000057  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.360 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000104  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.369 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000071  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.376 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000046  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.383 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000060  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.395 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000228  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.412 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000086  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.419 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000045  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.430 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000046  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.440 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000053  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.449 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000035  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.456 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000270  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.466 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000057  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.471 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000040  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:02.480 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:02] "GET /login HTTP/1.1 302 0" 0.000056  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.502 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000048  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.511 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000180  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.517 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000050  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.525 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000051  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.532 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000065  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.540 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000075  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.550 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000050  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.556 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000094  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.562 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000052  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.569 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000057  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.576 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000042  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.582 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000062  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.596 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000209  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.608 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000058  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.618 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000055  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.627 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000235  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.643 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000051  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.650 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000078  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.657 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000059  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:07.667 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:07] "GET /login HTTP/1.1 302 0" 0.000095  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.695 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000067  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.702 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000049  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.710 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000113  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.716 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000080  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.722 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000050  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.728 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000057  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.734 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000071  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.740 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000060  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.748 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000060  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.758 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000049  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.770 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000127  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.784 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000082  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.793 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000072  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.802 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000063  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.812 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000056  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.819 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000062  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.824 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000067  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.830 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000060  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.836 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000039  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:36:37.842 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:36:37] "GET /login HTTP/1.1 302 0" 0.000084  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.862 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000053  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.870 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000051  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.877 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000083  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.884 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000049  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.890 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000063  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.896 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000075  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.903 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000065  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.909 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000051  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.918 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000049  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.928 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000046  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.935 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000053  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.943 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000040  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.948 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000050  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.954 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000059  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.962 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000044  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.967 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000049  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.973 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000043  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.978 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000053  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.983 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000048  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:37:37.992 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:37:37] "GET /login HTTP/1.1 302 0" 0.000057  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.030 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000236  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.059 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000069  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.073 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000158  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.091 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000068  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.108 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000051  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.116 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000051  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.124 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000066  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.141 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000223  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.175 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000210  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.199 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000079  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.218 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000091  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.235 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000058  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.250 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000127  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.262 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000053  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.275 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000052  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.289 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000054  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.298 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000049  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.309 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000045  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.316 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000050  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:42:38.323 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:42:38] "GET /login HTTP/1.1 302 0" 0.000044  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:45:27.606 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2019/01/07 00:45:29.903 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:45:29] "GET /login HTTP/1.1 200 0" 0.001296  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:45:35.390 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:45:35] "GET /user/loginauth?username=admin&password=123123 HTTP/1.1 302 0" 0.000480 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:45:35.398 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:45:35] "GET / HTTP/1.1 200 0" 0.001099 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:47:32.928 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2019/01/07 00:47:34.455 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:47:34] "GET / HTTP/1.1 302 0" 0.000536 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:47:34.462 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:47:34] "GET /login HTTP/1.1 200 0" 0.000661 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:47:42.341 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:47:42] "GET /user/loginauth?username=admin&password=123123 HTTP/1.1 302 0" 0.000494 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:47:42.348 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:47:42] "GET / HTTP/1.1 200 0" 0.001006 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:47:58.518 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:47:58] "GET /index.bak HTTP/1.1 404 0" 0.000338 http://127.0.0.1:8080/ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:48:11.260 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:48:11] "POST /v1/remoteCmd HTTP/1.1 302 0" 0.000116  PostmanRuntime/7.4.0
+
+2019/01/07 00:48:11.266 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:48:11] "GET /login HTTP/1.1 200 0" 0.000659 http://127.0.0.1:8080/v1/remoteCmd PostmanRuntime/7.4.0
+
+2019/01/07 00:50:02.045 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2019/01/07 00:50:04.072 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:50:04] "POST /v1/remoteCmd HTTP/1.1 200 0" 0.003663  PostmanRuntime/7.4.0
+
+2019/01/07 00:51:36.851 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2019/01/07 00:51:40.073 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:51:40] "POST /v1/remoteCmd HTTP/1.1 200 0" 0.000450  PostmanRuntime/7.4.0
+
+2019/01/07 00:51:50.919 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:51:50] "POST /v1/remoteCmd HTTP/1.1 200 0" 0.000095  PostmanRuntime/7.4.0
+
+2019/01/07 00:51:55.112 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:51:55] "GET / HTTP/1.1 302 0" 0.000124 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:51:55.122 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:51:55] "GET /login HTTP/1.1 200 0" 0.001682 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:51:59.262 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:51:59] "GET /user/loginauth?username=admin&password=123123 HTTP/1.1 302 0" 0.000435 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:51:59.270 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:51:59] "GET / HTTP/1.1 200 0" 0.001341 http://127.0.0.1:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36
+
+2019/01/07 00:54:55.676 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:54:55] "POST /v1/remoteCmd HTTP/1.1 200 0" 0.001973  PostmanRuntime/7.4.0
+
+2019/01/07 00:57:27.979 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 12:57:27] "POST /v1/remoteCmd HTTP/1.1 200 0" 0.016296  PostmanRuntime/7.4.0
+
+2019/01/07 10:18:48.916 [I] [asm_amd64.s:1333] http server Running on http://:8080
+2019/01/07 10:18:52.469 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:18:52] "GET / HTTP/1.1 302 0" 0.000292  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:18:52.476 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:18:52] "GET /login HTTP/1.1 200 0" 0.000819  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:18:52.486 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:18:52] "GET /static/css/roboto.css HTTP/1.1 304 0" 0.000646 http://localhost:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:18:52.494 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:18:52] "GET /static/css/bootstrap-clearmin.min.css HTTP/1.1 304 0" 0.001749 http://localhost:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:18:52.495 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:18:52] "GET /static/css/font-awesome.min.css HTTP/1.1 304 0" 0.002025 http://localhost:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:18:52.495 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:18:52] "GET /static/img/logo-big.svg HTTP/1.1 304 0" 0.001758 http://localhost:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:18:52.583 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:18:52] "GET /static/fonts/roboto-regular.woff2 HTTP/1.1 304 0" 0.000436 http://localhost:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:18:52.584 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:18:52] "GET /static/fonts/fontawesome-webfont.woff2?v=4.3.0 HTTP/1.1 304 0" 0.001120 http://localhost:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:18:52.584 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:18:52] "GET /static/fonts/roboto-medium.woff2 HTTP/1.1 304 0" 0.001506 http://localhost:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:18:52.611 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:18:52] "GET /favicon.ico HTTP/1.1 404 0" 0.000503 http://localhost:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.006 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET /user/loginauth?username=admin&password=123123 HTTP/1.1 302 0" 0.000521 http://localhost:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.015 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET / HTTP/1.1 200 0" 0.000893 http://localhost:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.031 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET /static/css/material-design.css HTTP/1.1 200 0" 0.004668 http://localhost:8080/ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.032 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET /static/css/small-n-flat.css HTTP/1.1 200 0" 0.005054 http://localhost:8080/ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.034 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET /static/js/lib/jquery-2.1.3.min.js HTTP/1.1 200 0" 0.004422 http://localhost:8080/ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.037 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET /static/js/clearmin.min.js HTTP/1.1 200 0" 0.000663 http://localhost:8080/ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.038 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET /static/js/demo/home.js HTTP/1.1 200 0" 0.000610 http://localhost:8080/ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.038 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET /static/js/jquery.mousewheel.min.js HTTP/1.1 200 0" 0.000626 http://localhost:8080/ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.040 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET /static/js/jquery.cookie.min.js HTTP/1.1 200 0" 0.000397 http://localhost:8080/ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.041 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET /static/js/fastclick.min.js HTTP/1.1 200 0" 0.000507 http://localhost:8080/ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.042 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET /static/js/bootstrap.min.js HTTP/1.1 200 0" 0.001059 http://localhost:8080/ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.071 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET /static/img/md/light/menu.svg HTTP/1.1 200 0" 0.000478 http://localhost:8080/ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.072 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET /static/img/sf/house.svg HTTP/1.1 200 0" 0.000821 http://localhost:8080/ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.072 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET /static/img/md/light/account-circle.svg HTTP/1.1 200 0" 0.001181 http://localhost:8080/ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:12.143 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:12] "GET /static/fonts/roboto-light.woff2 HTTP/1.1 200 0" 0.002185 http://localhost:8080/login Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:44.387 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:44] "GET /login.html HTTP/1.1 200 0" 0.001032 http://localhost:8080/ Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:54.082 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:54] "GET /user/loginauth?username=admin&password=123123 HTTP/1.1 302 0" 0.000606 http://localhost:8080/login.html Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:54.087 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:54] "GET / HTTP/1.1 200 0" 0.000883 http://localhost:8080/login.html Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+
+2019/01/07 10:19:58.344 [D] [server.go:2741] 127.0.0.1 - - [07/Jan/2019 10:19:58] "GET /login.html HTTP/1.1 200 0" 0.000651  Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_2) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15
+

@@ -10,11 +10,14 @@ import (
 
 func sshClient(h Host, password string) (client *ssh.Client, sshErr SshError) {
 
+	//signer, err := ssh.ParsePrivateKey(utils.Key)
+
 	config := &ssh.ClientConfig{
 
 		User:    h.User,
 		Timeout: 5 * time.Second,
 		Auth: []ssh.AuthMethod{
+	//		ssh.PublicKeys(signer),
 			ssh.Password(password),
 		},
 		HostKeyCallback: func(hostname string, remote net.Addr, key ssh.PublicKey) error {
@@ -65,7 +68,7 @@ func newGatSshClient(t *Task) (client *ssh.Client, sshErr SshError) {
 		return
 	}
 
-	if t.Auth.SavePassword {
+	if t.Auth.SavePassword == true {
 		for _, pw := range t.Auth.Passwords {
 			client, sshErr = sshClient(t.Host, pw)
 
@@ -103,6 +106,7 @@ func newGatSshClient(t *Task) (client *ssh.Client, sshErr SshError) {
 		if sshErr.Content != nil {
 			return
 		}
+		return
 	}
 	return
 }
