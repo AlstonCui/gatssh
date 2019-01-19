@@ -5,17 +5,12 @@ import (
 	"strings"
 	"fmt"
 	"gatssh/models"
-	"sync"
 )
 
 const (
 	GAT_SESSION_KEY  = "GAT_SESSION_KEY"
 	GAT_SESSION_USER = "GAT_SESSION_USER"
-
 )
-
-var TaskCatch = sync.Map{}
-var ResultCatch = sync.Map{}
 
 var HTTPCODE = map[int]string{
 	20000: "OK",

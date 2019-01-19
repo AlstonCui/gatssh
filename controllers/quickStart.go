@@ -41,10 +41,7 @@ func (this *GatSshQuickStart) QuickStart() {
 	ct.TaskChan = make(chan *sshClient.Task, len(ct.HostList))
 	ct.ResultChan = make(chan *models.TaskDetail, len(ct.HostList))
 
-	TaskCatch.Store(ct.TaskId, ct.TaskChan)
-	ResultCatch.Store(ct.TaskId, ct.ResultChan)
-
-	err = ct.StartNewTask(ct.TaskChan, ct.ResultChan)
+	err = ct.StartNewTask()
 	if err != nil {
 		this.ServeJSON(40000, err)
 	}
@@ -74,14 +71,14 @@ func (this *GatSshQuickStart) StartSendByWS() {
 
 	defer ws.Close()
 
-	resultChan, ok := ResultCatch.Load(TaskId)
+	resultChan, ok := sshClient.ResultCatch.Load(TaskId)
 	if ok {
 
 		for i := 1; i <= cap(resultChan.(chan *models.TaskDetail)); i++ {
 
 			result := <-resultChan.(chan *models.TaskDetail)
 
-			result.Id = i
+			result.IdInTask = i
 
 			err := ws.WriteJSON(result)
 			if err != nil {
@@ -95,14 +92,6 @@ func (this *GatSshQuickStart) StartSendByWS() {
 		this.ServeJSON(40000, err)
 		return
 	}
-
-	taskChan, _ := TaskCatch.Load(TaskId)
-
-	close(taskChan.(chan *sshClient.Task))
-	close(resultChan.(chan *models.TaskDetail))
-
-	TaskCatch.Delete(TaskId)
-	ResultCatch.Delete(TaskId)
 
 	this.ServeJSON(20000, "Task results are all transmitted")
 

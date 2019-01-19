@@ -25,6 +25,7 @@ func (this *UserLogin) LoginAuth() {
 	clientIp := this.getClientIp()
 
 	Auth, uid := user.AuthUserAndPass()
+
 	if Auth {
 		sessionId := fmt.Sprint(uid + clientIp)
 

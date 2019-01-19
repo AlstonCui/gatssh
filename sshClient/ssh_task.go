@@ -6,11 +6,12 @@ import (
 	"golang.org/x/crypto/ssh"
 	"time"
 	"gatssh/utils"
+	"sync"
 )
 
-func (ct *CreateTask) StartNewTask(taskChan chan *Task, resultChan chan *models.TaskDetail) (err error) {
+func (ct *CreateTask) StartNewTask() (err error) {
 
-	StartTaskWorkPool(ct, taskChan,resultChan)
+	go StartTaskWorkPool(ct)
 
 	tr := models.TaskRecord{
 		TaskId:           ct.TaskId,
@@ -24,7 +25,9 @@ func (ct *CreateTask) StartNewTask(taskChan chan *Task, resultChan chan *models.
 	return
 }
 
-func StartTaskWorkPool(ct *CreateTask, taskChan chan *Task,resultChan chan *models.TaskDetail) {
+func StartTaskWorkPool(ct *CreateTask) {
+
+	ResultCatch.Store(ct.TaskId, ct.ResultChan)
 
 	for _, h := range ct.HostList {
 
@@ -37,38 +40,49 @@ func StartTaskWorkPool(ct *CreateTask, taskChan chan *Task,resultChan chan *mode
 			SavePassword:    false,
 			UsePasswordInDB: false,
 		}
-		taskChan <- t
+		ct.TaskChan <- t
 	}
+
+	var wg sync.WaitGroup
 
 	for i := 0; i < ct.PoolSize; i++ {
-		go taskWorker(taskChan, resultChan)
+		go taskWorker(ct.TaskChan, ct.ResultChan, &wg)
 	}
+
+	wg.Wait()
+
+	close(ct.TaskChan)
+	close(ct.ResultChan)
+
+	ResultCatch.Delete(ct.TaskId)
 }
 
-func taskWorker(taskChan chan *Task,resultChan chan *models.TaskDetail) {
+func taskWorker(taskChan chan *Task, resultChan chan *models.TaskDetail, wg *sync.WaitGroup) {
 
 	for t := range taskChan {
+
+		wg.Add(1)
+
 		var client *ssh.Client
 
 		client, t.SshError = newGatSshClient(t)
 
 		if t.SshError.Content != nil {
-			t.createTaskDetail(resultChan)
+			t.createTaskDetail(resultChan, wg)
 			continue
 		}
 
 		t.Standard, t.SshError = sshExecution(client, t.Cmd)
 		if t.SshError.Code != 0 {
-			t.createTaskDetail(resultChan)
+			t.createTaskDetail(resultChan, wg)
 			continue
 		}
 
-		t.createTaskDetail(resultChan)
+		t.createTaskDetail(resultChan, wg)
 	}
-
 }
 
-func (t *Task) createTaskDetail(resultChan chan *models.TaskDetail) {
+func (t *Task) createTaskDetail(resultChan chan *models.TaskDetail, wg *sync.WaitGroup) {
 
 	td := &models.TaskDetail{
 		TaskId:           t.TaskId,
@@ -81,13 +95,14 @@ func (t *Task) createTaskDetail(resultChan chan *models.TaskDetail) {
 		ResultContent:    t.Standard.StdOut.String() + t.Standard.StdErr.String(),
 	}
 
+	resultChan <- td
+
 	err := td.SaveTaskDetail()
 	if err != nil {
-		utils.GatLog.Warning("Save task details:",err)
-		return
+		utils.GatLog.Warning("Save task details:", err)
 	}
 
-	resultChan <- td
+	wg.Done()
 
 	return
 }

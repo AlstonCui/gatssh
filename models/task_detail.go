@@ -7,6 +7,7 @@ import (
 
 type TaskDetail struct {
 	Id               int    `gorm:"primary_key"`
+	IdInTask         int
 	TaskId           string `gorm:"type:varchar(100);not null;"`
 	Ip               string `gorm:"type:varchar(100);not null;"`
 	GatUser          string `gorm:"type:varchar(100);not null;"`

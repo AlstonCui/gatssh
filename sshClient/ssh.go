@@ -3,6 +3,7 @@ package sshClient
 import (
 	"bytes"
 	"gatssh/models"
+	"sync"
 )
 
 const (
@@ -13,6 +14,8 @@ const (
 	NoMatchPassInDB        = 5
 	SaveHostAndPassErr     = 6
 )
+
+var ResultCatch = sync.Map{}
 
 type Host struct {
 	Addr string `json:"addr"`
@@ -65,3 +68,4 @@ type CreateTask struct {
 	TaskChan        chan *Task
 	ResultChan      chan *models.TaskDetail
 }
+
