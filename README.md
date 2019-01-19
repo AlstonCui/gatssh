@@ -8,4 +8,3 @@
     
     目前只是一个demo，功能性和安全性还不完善
     
-![Image](https://github.com/AlstonCui/gatssh/blob/master/img/WechatIMG7.jpeg)
