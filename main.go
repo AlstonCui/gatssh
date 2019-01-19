@@ -10,7 +10,6 @@ func main() {
 }
 
 func init() {
-	beego.SetStaticPath("/views/static","public")
 	beego.BConfig.WebConfig.Session.SessionOn = true
 	beego.BConfig.WebConfig.Session.SessionName = "GatsshSessionID"
 }
