@@ -1,6 +1,9 @@
 package gatssh
 
-import "bytes"
+import (
+	"bytes"
+	"gatssh/models"
+)
 
 const (
 	SshNetworkError        = 1
@@ -12,26 +15,25 @@ const (
 )
 
 type Host struct {
-	User string `json:"user"`
-	Addr string `json:"address"`
+	Addr string `json:"addr"`
 	Port int    `json:"port"`
 }
 
 type Task struct {
-	TaskId   string
-	Host     Host
-	Auth     Auth
-	GatUser  string
-	Cmd      string
-	PoolSize int
-	Standard Standard
-	SshError SshError
+	TaskId          string
+	Host            Host
+	Auth            []Auth
+	GatUser         string
+	Cmd             string
+	Standard        Standard
+	SshError        SshError
+	SavePassword    bool `json:"savePassword"`
+	UsePasswordInDB bool `json:"usePasswordInDB"`
 }
 
 type Auth struct {
-	Passwords       []string `json:"password"`
-	SavePassword    bool     `json:"savePassword"`    //1 = yes, -1 = no
-	UsePasswordInDB bool     `json:"usePasswordInDB"` //1 = yes, -1 = no
+	User     string `json:"user"`
+	Password string `json:"password"`
 }
 
 type Standard struct {
@@ -52,10 +54,15 @@ type Result struct {
 }
 
 type CreateTask struct {
-	Hosts    []Host `json:"hosts"`
-	Auth     Auth   `json:"auth"`
-	Cmd      string `json:"cmd"`
-	PoolSize int    `json:"poolSize"`
-	TaskId   string
-	GatUser	string
+	//Hosts string`json:"hosts"`
+	HostList        []Host `json:"hostList"`
+	AuthList        []Auth `json:"authList"`
+	Command         string `json:"command"`
+	TaskId          string
+	GatUser         string
+	PoolSize        int
+	SavePassword    bool   `json:"savePassword"`
+	UsePasswordInDB bool   `json:"usePasswordInDB"`
+	TaskChan        chan *Task
+	ResultChan      chan *models.TaskDetail
 }

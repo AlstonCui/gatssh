@@ -2,6 +2,7 @@ package models
 
 import (
 	"time"
+	"errors"
 )
 
 type TaskRecord struct {
@@ -13,9 +14,21 @@ type TaskRecord struct {
 	HostCount        int
 }
 
-func (this *TaskRecord) TaskInsert() (err error) {
+func (this *TaskRecord) SaveTask() (err error) {
 	if err := db.Create(this).Error; err != nil {
 		return err
+	}
+	return
+}
+
+
+func (this *TaskRecord) QueryTask(taskId string) ( taskRecord TaskRecord,err error) {
+
+	rows := db.Where("task_id = ? ", taskId).Find(&taskRecord)
+
+	if rows.RowsAffected == 0 {
+		err = errors.New("No match task record in DB,Please make sure the task_id is right...")
+		return
 	}
 	return
 }

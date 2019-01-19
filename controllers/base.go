@@ -2,18 +2,20 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/logs"
 	"strings"
 	"fmt"
-	"gatlin/models"
+	"gatssh/models"
+	"sync"
 )
 
 const (
 	GAT_SESSION_KEY  = "GAT_SESSION_KEY"
 	GAT_SESSION_USER = "GAT_SESSION_USER"
+
 )
 
-var log = beego.BeeLogger
+var TaskCatch = sync.Map{}
+var ResultCatch = sync.Map{}
 
 var HTTPCODE = map[int]string{
 	20000: "OK",
@@ -39,11 +41,7 @@ func (this *baseController) Prepare() {
 	sKey := this.GetSession(GAT_SESSION_KEY)
 	sUser := this.GetSession(GAT_SESSION_USER)
 
-	if sKey == nil {
-		this.routeFilter()
-		return
-	}
-	if sUser == nil {
+	if sKey == nil || sUser == nil{
 		this.routeFilter()
 		return
 	}
@@ -54,7 +52,6 @@ func (this *baseController) Prepare() {
 	if sKey.(string) != fmt.Sprint(uid+clientIp) {
 		this.routeFilter()
 		return
-
 	}
 	this.User = sUser.(string)
 	this.IsLogin = true
@@ -62,6 +59,7 @@ func (this *baseController) Prepare() {
 }
 
 func (this *baseController) routeFilter() {
+
 	controllerName, _ := this.GetControllerAndAction()
 
 	switch controllerName {
@@ -69,9 +67,10 @@ func (this *baseController) routeFilter() {
 		return
 	case "UserController":
 		return
-	case "GatSshMultiShoot":
+	case "GatSshQuickStart":
 		return
-
+	case "QueryGatSshTaskDetails":
+		return
 	default:
 		this.Redirect("/login", 302)
 		this.ServeJSON(40000, nil)
@@ -97,21 +96,3 @@ func (this *baseController) ServeJSON(code int, data interface{}) {
 	this.Controller.ServeJSON()
 }
 
-func initLog() {
-
-	log.Reset()
-	logConfig := `{"filename":"gatlin.log","maxdays":7,"perm": "0644"}`
-	if err := log.SetLogger(logs.AdapterFile, logConfig); err != nil {
-		panic(err)
-	}
-	log.EnableFuncCallDepth(true)
-	log.SetLogger("console", "")
-	log.SetLevel(logs.LevelDebug)
-
-	beego.BConfig.Log.AccessLogs = true
-	beego.BConfig.Log.FileLineNum = true
-}
-
-func init() {
-	initLog()
-}

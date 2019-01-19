@@ -1,20 +1,19 @@
 package routers
 
 import (
-	"gatlin/controllers"
+	"gatssh/controllers"
 	"github.com/astaxie/beego"
 )
 
 func init() {
-	beego.Router("/v1/remoteCmd", &controllers.GatSshMultiShoot{})
-	//beego.Router("/login", &controllers.UserController{}, `get:PageLogin`)
-	//beego.Router("/register", &controllers.UserController{}, `post:Register`)
-	//beego.Router("/reallogin", &controllers.UserController{}, `post:Reallogin`)
-	//beego.Router("/v1/remoteShell",&controllers.RemoteShell{})
 
 	beego.Router("/",&controllers.MainController{})
-	beego.Router("/login",&controllers.UserLogin{})
-	beego.AutoRouter(&controllers.UserController{})
 
+	beego.Router("/login",&controllers.UserLogin{},"Get:Login")
+	beego.Router("/loginAuth",&controllers.UserLogin{},"Post:LoginAuth")
+
+	beego.Router("/v1/quickStart",&controllers.GatSshQuickStart{},"post:QuickStart")
+	beego.Router("/v1/StartReceiveFormWS",&controllers.GatSshQuickStart{},"get:StartSendByWS")
+	beego.Router("/v1/queryTaskDetails",&controllers.QueryGatSshTaskDetails{})
 
 }

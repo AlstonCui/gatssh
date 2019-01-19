@@ -2,101 +2,92 @@ package gatssh
 
 import (
 	"fmt"
-	"gatlin/models"
-	"log"
+	"gatssh/models"
 	"golang.org/x/crypto/ssh"
 	"time"
+	"gatssh/utils"
 )
 
-func (ct *CreateTask) StartNewTask() (err error) {
+func (ct *CreateTask) StartNewTask(taskChan chan *Task, resultChan chan *models.TaskDetail) (err error) {
 
-	StartTaskWorkPool(ct)
+	StartTaskWorkPool(ct, taskChan,resultChan)
 
 	tr := models.TaskRecord{
 		TaskId:           ct.TaskId,
 		GatUser:          ct.GatUser,
-		OperationContent: ct.Cmd,
+		OperationContent: ct.Command,
 		OperationTime:    time.Now(),
-		HostCount:        len(ct.Hosts),
+		HostCount:        len(ct.HostList),
 	}
-	err = tr.TaskInsert()
+	err = tr.SaveTask()
 
 	return
 }
 
-func StartTaskWorkPool(ct *CreateTask) {
+func StartTaskWorkPool(ct *CreateTask, taskChan chan *Task,resultChan chan *models.TaskDetail) {
 
-	taskChan := make(chan *Task, 10000)
-
-	for _, h := range ct.Hosts {
+	for _, h := range ct.HostList {
 
 		t := &Task{
-			TaskId:  ct.TaskId,
-			Host:    h,
-			Auth:    ct.Auth,
-			Cmd:     ct.Cmd,
-			GatUser: ct.GatUser,
+			TaskId:          ct.TaskId,
+			Host:            h,
+			Auth:            ct.AuthList,
+			Cmd:             ct.Command,
+			GatUser:         ct.GatUser,
+			SavePassword:    false,
+			UsePasswordInDB: false,
 		}
 		taskChan <- t
 	}
 
 	for i := 0; i < ct.PoolSize; i++ {
-		go taskWorker(taskChan)
+		go taskWorker(taskChan, resultChan)
 	}
-
 }
 
-func taskWorker(taskChan chan *Task) {
+func taskWorker(taskChan chan *Task,resultChan chan *models.TaskDetail) {
 
 	for t := range taskChan {
-
 		var client *ssh.Client
 
 		client, t.SshError = newGatSshClient(t)
 
 		if t.SshError.Content != nil {
-
-			err := t.createTaskDetail()
-			if err != nil {
-				log.Fatal(err)
-			}
+			t.createTaskDetail(resultChan)
 			continue
 		}
 
 		t.Standard, t.SshError = sshExecution(client, t.Cmd)
 		if t.SshError.Code != 0 {
-			err := t.createTaskDetail()
-			if err != nil {
-				log.Fatal(err)
-				return
-			}
+			t.createTaskDetail(resultChan)
 			continue
 		}
-		err := t.createTaskDetail()
-		if err != nil {
-			log.Fatal(err)
-		}
+
+		t.createTaskDetail(resultChan)
 	}
 
 }
 
-func (t *Task) createTaskDetail() (err error) {
+func (t *Task) createTaskDetail(resultChan chan *models.TaskDetail) {
 
 	td := &models.TaskDetail{
 		TaskId:           t.TaskId,
 		Ip:               t.Host.Addr,
-		User:             t.GatUser,
+		GatUser:          t.GatUser,
 		OperationContent: t.Cmd,
 		OperationTime:    time.Now(),
 		ResultCode:       t.SshError.Code,
 		ResultErr:        fmt.Sprintln(t.SshError.Content),
-		ResultContent:    "\n" + t.Standard.StdOut.String() + t.Standard.StdErr.String(),
+		ResultContent:    t.Standard.StdOut.String() + t.Standard.StdErr.String(),
 	}
-	fmt.Println(td)
-	err = td.TaskDetailInsert()
+
+	err := td.SaveTaskDetail()
 	if err != nil {
-		log.Fatal(err)
+		utils.GatLog.Warning("Save task details:",err)
+		return
 	}
+
+	resultChan <- td
+
 	return
 }
-

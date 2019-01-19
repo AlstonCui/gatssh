@@ -11,7 +11,7 @@ var db *gorm.DB
 
 func init() {
 	var err error
-	db, err = gorm.Open("sqlite3", "gatlin.db")
+	db, err = gorm.Open("sqlite3", "gatssh.db")
 	if err != nil {
 		log.Fatal("conn",err)
 	}

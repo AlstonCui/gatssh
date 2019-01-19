@@ -3,7 +3,7 @@ package models
 import (
 	"time"
 	"github.com/satori/go.uuid"
-	"gatlin/utils"
+	"gatssh/utils"
 )
 
 type User struct {
@@ -19,14 +19,12 @@ type User struct {
 	PublicKey     string `gorm:"type:TEXT;"`
 }
 
-
 func init() {
 	var user User
 	rows := db.First(&user)
 	if rows.RowsAffected == 0 {
-
 		uid := uuid.NewV4().String()
-		user := &User{Username: "admin", Uid: uid, Password: utils.Md5Sum("123123"), Rank: 1000, Group: "admin", CreateTime: time.Now()}
+		user := &User{Username: "admin", Uid: uid, Password: utils.Md5Sum("123456"), Rank: 1000, Group: "admin", CreateTime: time.Now()}
 		db.Create(&user)
 	}
 }
@@ -48,7 +46,6 @@ func (this *User) AuthUserAndPass() (ok bool, uid string) {
 
 func GetUid(username string) string {
 	var user User
-	db.Where("username =?",username).Find(&user)
-
+	db.Where("username =?", username).Find(&user)
 	return user.Uid
 }

@@ -100,7 +100,7 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-offset-2 col-sm-10">
-                                    <div class="checkbox">
+                                {{/*                                    <div class="checkbox">
                                         <label>
                                             <input type="checkbox" name="remPass">
                                             保存主机的密码
@@ -109,12 +109,12 @@
                                             <input type="checkbox" name="usePassInDB">
                                             使用保存的密码
                                         </label>
-                                    </div>
+                                    </div>*/}}
                                 </div>
                             </div>
                             <div class="form-group" style="margin-bottom:0">
                                 <div class="col-sm-offset-2 col-sm-10 text-right">
-                                    <button type="submit" class="btn btn-primary">RUN</button>
+                                    <button type="button" class="btn btn-primary" id="btnRun">RUN</button>
                                 </div>
                             </div>
                         </div>
@@ -134,102 +134,28 @@
                                     </span>
                         </div>
                     </div>
-                    <table class="table">
+
+                    <table class="table" style="white-space: pre-line">
                         <thead>
                         <tr>
-                            <th>#</th>
-                            <th>IP</th>
-                            <th>状态码</th>
-                            <th>结果</th>
+                            <th style="width: 5%">#</th>
+                            <th style="width: 15%">IP</th>
+                            <th style="width: 10%;margin:0 auto;">状态码</th>
+                            <th style="width: 50%">标准输出</th>
+                            <th style="width: 20%">错误</th>
                         </tr>
                         </thead>
-                        <tbody>
-                        <tr class="active">
-                            <th scope="row">1</th>
-                            <td>active</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
+
+                        <tbody id="ResultContent">
                         <tr>
-                            <th scope="row">2</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
+                            <td colspan="5" style="text-align:center;">暂无数据</td>
                         </tr>
-                        <tr class="success">
-                            <th scope="row">3</th>
-                            <td>success</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="info">
-                            <th scope="row">5</th>
-                            <td>info</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">6</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="warning">
-                            <th scope="row">7</th>
-                            <td>warning</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">8</th>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr class="danger">
-                            <th scope="row">9</th>
-                            <td>danger</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">10</th>
-                            <td>danger</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">11</th>
-                            <td>danger</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">9</th>
-                            <td>danger</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">9</th>
-                            <td>danger</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">9</th>
-                            <td>danger</td>
-                            <td>Column content</td>
-                            <td>Column content</td>
-                        </tr>
+
                         </tbody>
+
                     </table>
+
+
                 </div>
             </div>
         </div>
@@ -238,6 +164,7 @@
     </footer>
 </div>
 
+
 <script src="/static/js/lib/jquery-2.1.3.min.js"></script>
 <script src="/static/js/jquery.mousewheel.min.js"></script>
 <script src="/static/js/jquery.cookie.min.js"></script>
@@ -245,6 +172,168 @@
 <script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/clearmin.min.js"></script>
 <script src="/static/js/demo/home.js"></script>
+
+<script>
+    $(function () {
+        $('#btnRun').click(function () {
+            var user = $('#inputUsername').val();
+            var password = $('#inputPassword3').val();
+            var command = $('#inputCommand').val();
+            var addrPortList = $('#iplist').val().split("\n");
+
+            if (user == "" || password == "" || command == "" || addrPortList == "") {
+                alert('请补全信息');
+                return false;
+            }
+
+            var hostList = [];
+
+            for (i in addrPortList) {
+                if (trim(addrPortList[i]) == "") {
+                    continue
+                }
+                if (addrPortList[i].indexOf(":") != -1) {
+
+                    addr = addrPortList[i].split(":");
+
+                    if (isNaN(addr[1])) {
+                        alert('存在非法IP');
+                        return
+                    }
+                    port = parseInt(addr[1]);
+                    if (port < 0 || port > 65535) {
+                        alert('存在非法IP');
+                        return
+                    }
+                    var ip = addr[0];
+
+                    if (checkIpAddr(ip)) {
+                        hostList.push({
+                            addr: ip,
+                            port: port
+                        })
+                    } else {
+                        alert('存在非法IP');
+                        return
+                    }
+
+                } else {
+
+                    var ip = addrPortList[i];
+                    if (trim(ip) == "") {
+                        continue
+                    }
+
+                    if (checkIpAddr(ip)) {
+                        hostList.push({
+                            addr: ip,
+                            port: 22
+                        })
+                    } else {
+                        alert('存在非法IP');
+                        return
+                    }
+                }
+            }
+
+            if (hostList == "") {
+                alert('请补全信息');
+                return
+            }
+            var authList = [];
+            authList.push({
+                user: user,
+                password: password
+            });
+
+            $('#ResultContent').html('');
+            $.ajax({
+                url: "/v1/quickStart",
+                type: 'post',
+                dataType: 'json',
+                contentType: "application/json",
+                data: JSON.stringify({
+                    hostList: hostList,
+                    command: command,
+                    authList: authList
+                }),
+                success: function (data) {
+                    if (data.code == 20000) {
+                        alert('任务提交成功');
+                        // getResult(data.data, hostList.length);
+                        webSocket(data.data)
+
+
+                    } else {
+                        alert('任务提交失败');
+                    }
+                },
+
+                error: function () {
+                    console.log('通信异常');
+                }
+            })
+
+        });
+
+    });
+
+
+    function checkIpAddr(ipaddr) {
+
+        if (trim(ipaddr) == "") {
+            return false;
+        }
+
+        var ss = ipaddr.split(".");
+
+        if (ss.length != 4) {
+            return false;
+        }
+
+        var i = 0;
+        for (i = 0; i < ss.length; i++) {
+            if (isNaN(ss[i]) || parseInt(ss[i]) < 0 || parseInt(ss[i]) > 255) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function trim(text) {
+        if (typeof(text) == "string") {
+            return text.replace(/^\s*|\s*$/g, "");
+        } else {
+            return text;
+        }
+    }
+
+
+    function webSocket(date) {
+        var ws = new WebSocket('ws://' + window.location.host + '/v1/StartReceiveFormWS?taskId=' + date);
+
+        ws.onmessage = function (e) {
+
+            var v = JSON.parse(event.data);
+            var row = '<tr>' +
+                    '<td>' + v.Id + '</td>' +
+                    '<td>' + v.Ip + '</td>' +
+                    '<td>' + v.ResultCode + '</td>' +
+                    '<td>' + v.ResultContent + '</td>' +
+                    '<td>' + v.ResultErr + '</td>' +
+                    '</tr>'
+
+            $(row).prependTo($('#ResultContent'));
+
+            console.dir(event);
+
+        };
+
+        // var $ul = $('#msg-list');
+    }
+
+</script>
+
 <div id="cm-menu-backdrop" class="visible-xs-block visible-sm-block"></div>
 <div id="cm-submenu-popover" class="dropdown">
     <div data-toggle="dropdown"></div>

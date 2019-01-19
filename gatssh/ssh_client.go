@@ -5,16 +5,16 @@ import (
 	"time"
 	"net"
 	"fmt"
-	"gatlin/models"
+	"gatssh/models"
 )
 
-func sshClient(h Host, password string) (client *ssh.Client, sshErr SshError) {
+func sshClient(h Host,user string,password string) (client *ssh.Client, sshErr SshError) {
 
 	//signer, err := ssh.ParsePrivateKey(utils.Key)
 
 	config := &ssh.ClientConfig{
 
-		User:    h.User,
+		User:    user,
 		Timeout: 5 * time.Second,
 		Auth: []ssh.AuthMethod{
 	//		ssh.PublicKeys(signer),
@@ -51,9 +51,9 @@ func sshClient(h Host, password string) (client *ssh.Client, sshErr SshError) {
 
 func newGatSshClient(t *Task) (client *ssh.Client, sshErr SshError) {
 
-	if t.Auth.UsePasswordInDB {
+	if t.UsePasswordInDB {
 		var pass string
-		pass, err := models.HostSearch(t.Host.Addr, t.Host.Port, t.GatUser)
+		user,pass, err := models.QueryHost(t.Host.Addr, t.Host.Port, t.GatUser)
 
 		if err != nil {
 			sshErr.Code = NoMatchPassInDB
@@ -61,16 +61,17 @@ func newGatSshClient(t *Task) (client *ssh.Client, sshErr SshError) {
 			return
 		}
 
-		client, sshErr = sshClient(t.Host, pass)
+		client, sshErr = sshClient(t.Host,user, pass)
 		if sshErr.Code != 0 {
 			return
 		}
 		return
 	}
 
-	if t.Auth.SavePassword == true {
-		for _, pw := range t.Auth.Passwords {
-			client, sshErr = sshClient(t.Host, pw)
+	if t.SavePassword == true {
+		for _, au := range t.Auth {
+
+			client, sshErr = sshClient(t.Host,au.User,au.Password)
 
 			if sshErr.Code == SshAuthenticationError {
 				continue
@@ -82,12 +83,12 @@ func newGatSshClient(t *Task) (client *ssh.Client, sshErr SshError) {
 			h := &models.Host{
 				Ip:       t.Host.Addr,
 				Port:     t.Host.Port,
-				User:     t.Host.User,
+				User:     au.User,
 				Owner:    t.GatUser,
-				Password: pw,
+				Password: au.Password,
 			}
 
-			err := h.HostSave()
+			err := h.SaveHost()
 			if err != nil {
 				sshErr.Code = SaveHostAndPassErr
 				sshErr.Content = err
@@ -98,8 +99,8 @@ func newGatSshClient(t *Task) (client *ssh.Client, sshErr SshError) {
 		return
 	}
 
-	for _, pw := range t.Auth.Passwords {
-		client, sshErr = sshClient(t.Host, pw)
+	for _, au := range t.Auth{
+		client, sshErr = sshClient(t.Host,au.User,au.Password)
 		if sshErr.Code == SshAuthenticationError {
 			continue
 		}
@@ -125,7 +126,6 @@ func sshExecution(client *ssh.Client, cmd string) (std Standard, sshErr SshError
 
 	session.Stdout = &std.StdOut
 	session.Stderr = &std.StdErr
-
 	err = session.Run(cmd)
 	if err != nil {
 		sshErr.Code = SshCommandError
