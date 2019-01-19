@@ -34,7 +34,7 @@ func (this *GatSshQuickStart) QuickStart() {
 	}
 
 	ct.TaskId = uuid.NewV4().String()
-	ct.PoolSize = 10
+	ct.PoolSize = 1000
 	ct.GatUser = this.User
 	ct.UsePasswordInDB = false
 	ct.SavePassword = false
