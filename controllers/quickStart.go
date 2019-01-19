@@ -5,7 +5,7 @@ import (
 	"github.com/satori/go.uuid"
 	"github.com/gorilla/websocket"
 	"gatssh/models"
-	"gatssh/gatssh"
+	"gatssh/sshClient"
 	"gatssh/utils"
 	"errors"
 )
@@ -21,7 +21,7 @@ func (this *GatSshQuickStart) QuickStart() {
 		return
 	}
 
-	var ct *gatssh.CreateTask
+	var ct *sshClient.CreateTask
 	err := json.NewDecoder(this.Ctx.Request.Body).Decode(&ct)
 	if err != nil {
 		this.ServeJSON(40000, err)
@@ -38,14 +38,13 @@ func (this *GatSshQuickStart) QuickStart() {
 	ct.GatUser = this.User
 	ct.UsePasswordInDB = false
 	ct.SavePassword = false
-	ct.TaskChan = make(chan *gatssh.Task, len(ct.HostList))
+	ct.TaskChan = make(chan *sshClient.Task, len(ct.HostList))
 	ct.ResultChan = make(chan *models.TaskDetail, len(ct.HostList))
 
-	TaskCatch.Store(ct.TaskId,ct.TaskChan)
+	TaskCatch.Store(ct.TaskId, ct.TaskChan)
 	ResultCatch.Store(ct.TaskId, ct.ResultChan)
 
-
-	err = ct.StartNewTask(ct.TaskChan,ct.ResultChan)
+	err = ct.StartNewTask(ct.TaskChan, ct.ResultChan)
 	if err != nil {
 		this.ServeJSON(40000, err)
 	}
@@ -54,7 +53,6 @@ func (this *GatSshQuickStart) QuickStart() {
 
 	return
 }
-
 
 func (this *GatSshQuickStart) StartSendByWS() {
 
@@ -70,13 +68,13 @@ func (this *GatSshQuickStart) StartSendByWS() {
 	ws, err := upGrader.Upgrade(this.Ctx.ResponseWriter, this.Ctx.Request, nil)
 	if err != nil {
 		utils.GatLog.Alert("WebSocket Upgrade: %v", err)
-		this.ServeJSON(40000,err)
+		this.ServeJSON(40000, err)
 		return
 	}
 
 	defer ws.Close()
 
-	resultChan,ok := ResultCatch.Load(TaskId)
+	resultChan, ok := ResultCatch.Load(TaskId)
 	if ok {
 
 		for i := 1; i <= cap(resultChan.(chan *models.TaskDetail)); i++ {
@@ -91,17 +89,16 @@ func (this *GatSshQuickStart) StartSendByWS() {
 				break
 			}
 		}
-	}else {
+	} else {
 		err = errors.New("This task id is not correct:")
-		utils.GatLog.Alert("%v %v", err,TaskId)
-		this.ServeJSON(40000,err)
+		utils.GatLog.Alert("%v %v", err, TaskId)
+		this.ServeJSON(40000, err)
 		return
 	}
 
+	taskChan, _ := TaskCatch.Load(TaskId)
 
-	taskChan,_:= TaskCatch.Load(TaskId)
-
-	close(taskChan.(chan *gatssh.Task))
+	close(taskChan.(chan *sshClient.Task))
 	close(resultChan.(chan *models.TaskDetail))
 
 	TaskCatch.Delete(TaskId)
