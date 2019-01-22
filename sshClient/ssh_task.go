@@ -9,6 +9,8 @@ import (
 	"sync"
 )
 
+var mutex sync.Mutex
+
 func (ct *CreateTask) StartNewTask() (err error) {
 
 	go StartTaskWorkPool(ct)
@@ -54,7 +56,7 @@ func StartTaskWorkPool(ct *CreateTask) {
 	close(ct.TaskChan)
 	close(ct.ResultChan)
 
-	ResultCatch.Delete(ct.TaskId)
+	//ResultCatch.Delete(ct.TaskId)
 }
 
 func taskWorker(taskChan chan *Task, resultChan chan *models.TaskDetail, wg *sync.WaitGroup) {
@@ -97,7 +99,9 @@ func (t *Task) createTaskDetail(resultChan chan *models.TaskDetail, wg *sync.Wai
 
 	resultChan <- td
 
+	mutex.Lock()
 	err := td.SaveTaskDetail()
+	mutex.Unlock()
 	if err != nil {
 		utils.GatLog.Warning("Save task details:", err)
 	}

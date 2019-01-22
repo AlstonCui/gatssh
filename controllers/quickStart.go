@@ -86,7 +86,9 @@ func (this *GatSshQuickStart) StartSendByWS() {
 				break
 			}
 		}
+
 	} else {
+
 		err = errors.New("This task id is not correct:")
 		utils.GatLog.Alert("%v %v", err, TaskId)
 		this.ServeJSON(40000, err)
