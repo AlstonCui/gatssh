@@ -32,12 +32,12 @@ func (this *GatSshQuickStart) QuickStart() {
 		this.ServeJSON(40000, "No command received...")
 		return
 	}
-
+	//Create task
 	ct.TaskId = uuid.NewV4().String()
 	ct.PoolSize = 1000
 	ct.GatUser = this.User
-	ct.UsePasswordInDB = false
-	ct.SavePassword = false
+	//ct.UsePasswordInDB = false
+	//ct.SavePassword = false
 	ct.TaskChan = make(chan *sshClient.Task, len(ct.HostList))
 	ct.ResultChan = make(chan *models.TaskDetail, len(ct.HostList))
 
@@ -51,6 +51,7 @@ func (this *GatSshQuickStart) QuickStart() {
 	return
 }
 
+//Send data to the frontend using websocket
 func (this *GatSshQuickStart) StartSendByWS() {
 
 	if this.IsLogin != true {
@@ -61,7 +62,7 @@ func (this *GatSshQuickStart) StartSendByWS() {
 	TaskId := this.GetString("taskId")
 
 	var upGrader = websocket.Upgrader{}
-
+	//Instantiate the websocket
 	ws, err := upGrader.Upgrade(this.Ctx.ResponseWriter, this.Ctx.Request, nil)
 	if err != nil {
 		utils.GatLog.Alert("WebSocket Upgrade: %v", err)
@@ -70,7 +71,7 @@ func (this *GatSshQuickStart) StartSendByWS() {
 	}
 
 	defer ws.Close()
-
+	//Fetches the result queue from the global cache and listens on it
 	resultChan, ok := sshClient.ResultCatch.Load(TaskId)
 	if ok {
 

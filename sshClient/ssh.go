@@ -3,7 +3,6 @@ package sshClient
 import (
 	"bytes"
 	"gatssh/models"
-	"sync"
 )
 
 const (
@@ -15,7 +14,6 @@ const (
 	SaveHostAndPassErr     = 6
 )
 
-var ResultCatch = sync.Map{}
 
 type Host struct {
 	Addr string `json:"addr"`

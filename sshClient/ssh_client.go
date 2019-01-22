@@ -11,7 +11,7 @@ import (
 func sshClient(h Host,user string,password string) (client *ssh.Client, sshErr SshError) {
 
 	//signer, err := ssh.ParsePrivateKey(utils.Key)
-
+	//SSH auth config
 	config := &ssh.ClientConfig{
 
 		User:    user,
@@ -29,28 +29,28 @@ func sshClient(h Host,user string,password string) (client *ssh.Client, sshErr S
 				"aes128-cbc", "3des-cbc", "aes192-cbc", "aes256-cbc"},
 		},
 	}
-
+	//Establishing TCP connection，if err，it's a network problem.
 	conn, err := net.DialTimeout("tcp", fmt.Sprintf("%s:%d", h.Addr, h.Port), config.Timeout)
 	if err != nil {
 		sshErr.Code = SshNetworkError
 		sshErr.Content = err
 		return
 	}
-
+	//Establishing SSH connection，if err，it's authentication problem.
 	c, chans, reqs, err := ssh.NewClientConn(conn, fmt.Sprintf("%s:%d", h.Addr, h.Port), config)
 	if err != nil {
 		sshErr.Code = SshAuthenticationError
 		sshErr.Content = err
 		return
 	}
-
+	//Instantiate the ssh client
 	client = ssh.NewClient(c, chans, reqs)
 
 	return
 }
 
 func newGatSshClient(t *Task) (client *ssh.Client, sshErr SshError) {
-
+	//Whether to use the password in the database
 	if t.UsePasswordInDB {
 		var pass string
 		user,pass, err := models.QueryHost(t.Host.Addr, t.Host.Port, t.GatUser)
@@ -67,7 +67,7 @@ func newGatSshClient(t *Task) (client *ssh.Client, sshErr SshError) {
 		}
 		return
 	}
-
+	//Whether to save the password into the database
 	if t.SavePassword == true {
 		for _, au := range t.Auth {
 
@@ -98,7 +98,7 @@ func newGatSshClient(t *Task) (client *ssh.Client, sshErr SshError) {
 		}
 		return
 	}
-
+	//If more than one password is inputted, It's can try them one at a time
 	for _, au := range t.Auth{
 		client, sshErr = sshClient(t.Host,au.User,au.Password)
 		if sshErr.Code == SshAuthenticationError {
@@ -111,7 +111,7 @@ func newGatSshClient(t *Task) (client *ssh.Client, sshErr SshError) {
 	}
 	return
 }
-
+//Command execution
 func sshExecution(client *ssh.Client, cmd string) (std Standard, sshErr SshError) {
 
 	session, err := client.NewSession()

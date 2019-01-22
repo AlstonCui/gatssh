@@ -25,10 +25,12 @@ type baseResponse struct {
 
 type baseController struct {
 	beego.Controller
-	IsLogin bool   //标识 用户是否登陆
-	User    string //登陆的用户
+	IsLogin bool
+	User    string //login user
 }
 
+//Each HTTP requests going to  through here first
+//Session use "user's uuid" + "request's client IP" as a way of authentication.
 func (this *baseController) Prepare() {
 
 	this.IsLogin = false
@@ -40,7 +42,6 @@ func (this *baseController) Prepare() {
 		this.routeFilter()
 		return
 	}
-
 	uid := models.GetUid(sUser.(string))
 	clientIp := this.getClientIp()
 
@@ -53,6 +54,8 @@ func (this *baseController) Prepare() {
 	return
 }
 
+//These routers do not require session authentication.
+//Because they're going to judge whether the user is logged in or not
 func (this *baseController) routeFilter() {
 
 	controllerName, _ := this.GetControllerAndAction()
