@@ -14,14 +14,14 @@
 <body class="cm-1-navbar">
 <div id="cm-menu">
     <nav class="cm-navbar cm-navbar-primary">
-        <div class="cm-flex"><a href="bak/index.bak" class=""></a></div>
+        <div class="cm-flex"><a href="index.html" class=""></a></div>
         <div class="btn btn-primary md-menu-white" data-toggle="cm-menu"></div>
     </nav>
     <div id="cm-menu-content">
         <div id="cm-menu-items-wrapper">
             <div id="cm-menu-scroller">
                 <ul class="cm-menu-items" style="transform: translateY(0px);">
-                    <li class="active"><a href="bak/index.bak" class="sf-house">Home</a></li>
+                    <li class="active"><a href="/" class="sf-house">QuickStart</a></li>
 
                 </ul>
             </div>
@@ -32,8 +32,8 @@
     <nav class="cm-navbar cm-navbar-primary">
         <div class="btn btn-primary md-menu-white hidden-md hidden-lg" data-toggle="cm-menu"></div>
         <div class="cm-flex">
-            <h1>Home</h1>
-            <form id="cm-search" action="bak/index.bak" method="get">
+            <h1>QuickStart</h1>
+            <form id="cm-search" action="/" method="get">
                 <input type="search" name="q" autocomplete="off" placeholder="Search...">
             </form>
         </div>
@@ -50,7 +50,7 @@
                     <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-cog"></i> Settings</a>
+                    <a href="#"><i class="fa fa-fw fa-cog"></i> Change password</a>
                 </li>
                 <li>
                     <a href="login.html"><i class="fa fa-fw fa-sign-out"></i> Sign out</a>
@@ -66,7 +66,7 @@
     <div class="container-fluid">
         <div class="row cm-fix-height">
             <form class="form-horizontal">
-                <div class="col-lg-6">
+                <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">IP INPUT</div>
                         <div class="panel-body" style="min-height: 228px;">
@@ -74,7 +74,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+
+                <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">RUN</div>
                         <div class="panel-body" style="min-height: 214px;">
@@ -125,30 +126,34 @@
         <div class="row">
             <div>
                 <div class="panel panel-default">
-                    <div class="panel-heading">RESULT</div>
+                    <div class="panel-heading">RESULT(<span id = "currentCountIP">0</span>/<span id = "totalCountIP">0</span>)</div>
                     <div class="panel-body">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search for...">
+
+                        <div class="input-group" style="width:100%;margin: 0 auto;">
+                            <input id="tableSearch" type="text" class="form-control" placeholder="Search for..."
+                                   onchange="tableFilter()">
                             <span class="input-group-btn">
                                         <button class="btn btn-default" type="button">SEARCH</button>
                                     </span>
                         </div>
                     </div>
 
-                    <table class="table" style="white-space: pre-line">
+                    <table id="resultTable" class="table tablesorter" style="white-space: pre-line">
                         <thead>
                         <tr>
                             <th style="width: 5%">#</th>
-                            <th style="width: 15%">IP</th>
-                            <th style="width: 10%;margin:0 auto;">状态码</th>
-                            <th style="width: 50%">标准输出</th>
-                            <th style="width: 20%">错误</th>
+                            <th style="width: 10%">IP<button id="func8" onclick="IPContent();" style="
+    border: 0;vertical-align: bottom; background: white"><img src="static/img/sf/file-text.svg" height="20" width="20"></button>
+                            </th>
+                            <th style="width: 10%;margin:0 auto;">code</th>
+                            <th style="width: 50%">Stdout</th>
+                            <th style="width: 20%">Stderr</th>
                         </tr>
                         </thead>
 
                         <tbody id="ResultContent">
                         <tr>
-                            <td colspan="5" style="text-align:center;">暂无数据</td>
+                            <td colspan="5" style="text-align:center;">There is No data available</td>
                         </tr>
 
                         </tbody>
@@ -172,6 +177,7 @@
 <script src="static/js/bootstrap.min.js"></script>
 <script src="static/js/clearmin.min.js"></script>
 <script src="static/js/demo/home.js"></script>
+<script src="static/js/layer/layer.js"></script>
 
 <script>
     $(function () {
@@ -247,6 +253,13 @@
             });
 
             $('#ResultContent').html('');
+
+            var totalHostCount = hostList.length;
+
+            //写入到HTML中
+            $("#totalCountIP").text(totalHostCount);
+
+
             $.ajax({
                 url: "/v1/quickStart",
                 type: 'post',
@@ -317,7 +330,7 @@
             var v = JSON.parse(event.data);
             var row = '<tr>' +
                     '<td>' + v.IdInTask + '</td>' +
-                    '<td>' + v.Ip + '</td>' +
+                    '<td>' + v.Ip+":"+v.Port + '</td>' +
                     '<td>' + v.ResultCode + '</td>' +
                     '<td>' + v.ResultContent + '</td>' +
                     '<td>' + v.ResultErr + '</td>' +
@@ -325,10 +338,70 @@
 
             $(row).prependTo($('#ResultContent'));
 
+            getCurrentIpCount();
+
             console.dir(event);
 
         };
 
+    }
+
+    function tableFilter() {
+        var keyword = document.getElementById("tableSearch").value.toLowerCase().split(" ");
+        var table = document.getElementById("ResultContent");
+        var ele;
+        for (var r = 0; r < table.rows.length; r++) {
+            ele = table.rows[r].innerHTML;
+            var displayStyle = 'none';
+            for (var i = 0; i < keyword.length; i++) {
+                if (keyword == "") {
+                    displayStyle = "";
+                    break;
+                }
+                if (ele.toLowerCase().indexOf(keyword[i]) > 0) {
+                    displayStyle = '';
+                }
+                else {
+                    displayStyle = 'none';
+                    break;
+                }
+            }
+            table.rows[r].style.display = displayStyle;
+        }
+        getCurrentIpCount();
+    }
+
+
+    function IPContent() {
+
+        var list = "";
+        $("#ResultContent tr").each(function () {
+            //list.push($(this).find("td").eq(1).html());
+            if ($(this).is(':visible')) {
+                list += "<div style='margin-left: 20px'>" + $(this).find("td").eq(1).html() + "</div>"
+            }
+
+        });
+
+        //自定页
+
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-demo', //样式类名
+            closeBtn: 0, //不显示关闭按钮
+            shift: 2,
+            area: ['300px', '400px'], //宽高
+            shadeClose: true, //开启遮罩关闭
+            content: list,
+            title: "IP"
+        });
+    }
+
+
+    function getCurrentIpCount(){
+       var CurrentIpCount= $("#ResultContent tr:visible").length
+        //写入页面中
+        $("#currentCountIP").text(CurrentIpCount)
     }
 
 </script>

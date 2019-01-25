@@ -10,6 +10,8 @@ func main() {
 }
 
 func init() {
+	//beego.BConfig.Listen.HTTPPort = 80
+	//beego.BConfig.AppName = "gatssh"
 	beego.BConfig.WebConfig.Session.SessionOn = true
 	beego.BConfig.WebConfig.Session.SessionName = "GatsshSessionID"
 }

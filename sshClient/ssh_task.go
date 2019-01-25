@@ -9,7 +9,6 @@ import (
 	"sync"
 )
 
-
 //Global cache for task execution results, key = taskId, value = ResultChan
 var ResultCatch = sync.Map{}
 
@@ -95,6 +94,7 @@ func (t *Task) createTaskDetail(resultChan chan *models.TaskDetail, wg *sync.Wai
 	td := &models.TaskDetail{
 		TaskId:           t.TaskId,
 		Ip:               t.Host.Addr,
+		Port:             t.Host.Port,
 		GatUser:          t.GatUser,
 		OperationContent: t.Cmd,
 		OperationTime:    time.Now(),

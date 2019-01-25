@@ -10,6 +10,7 @@ type TaskDetail struct {
 	IdInTask         int
 	TaskId           string `gorm:"type:varchar(100);not null;"`
 	Ip               string `gorm:"type:varchar(100);not null;"`
+	Port             int
 	GatUser          string `gorm:"type:varchar(100);not null;"`
 	OperationContent string `gorm:"type:TEXT;not null;"`
 	OperationTime    time.Time
