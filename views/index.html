@@ -330,13 +330,13 @@
         var startId = 0;
         var count = 0;
         var tableIndex = 0;
-        var timeId = setInterval(function () {
 
+
+        if (startId ===0){
             $('#ResultContent').html('');
-            if (!tid) {
-                alert('必须传入taskId');
-                return false;
-            }
+        }
+
+        var timeId = setInterval(function () {
 
             $.ajax({
                 url: '/v1/queryTaskResults',
@@ -346,7 +346,6 @@
                     taskId: tid,
                     startId: startId
                 },
-
 
                 success: function (data) {
 
