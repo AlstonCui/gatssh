@@ -7,7 +7,7 @@ import (
 
 type TaskDetail struct {
 	Id               int    `gorm:"primary_key"`
-	IdInTask         int
+	//IdInTask         int
 	TaskId           string `gorm:"type:varchar(100);not null;"`
 	Ip               string `gorm:"type:varchar(100);not null;"`
 	Port             int
@@ -27,13 +27,32 @@ func (this *TaskDetail) SaveTaskDetail() error {
 	return nil
 }
 
-func (this *TaskDetail) QueryTaskDetails(taskId string) (taskDetails []TaskDetail, err error) {
 
-	rows := db.Where("task_id = ? ", taskId).Find(&taskDetails)
+func QueryTaskDetails(taskId string, startID int) (taskDetails []TaskDetail, currentCount int, lastID int, err error) {
 
-	if rows.RowsAffected == 0 {
-		err = errors.New("No match task details in DB,Please make sure the task_id is right...")
+	if startID == 0 {
+		rows := db.Where("task_id = ? ", taskId).Find(&taskDetails)
+
+		if rows.RowsAffected == 0 {
+			err = errors.New("The task is not finished yet, Or no match task details in DB,Please make sure the task_id is right...")
+			return
+		}
+		currentCount = len(taskDetails)
+
+		lastID = taskDetails[len(taskDetails)-1].Id
+
 		return
 	}
+
+	rows := db.Where("task_id = ? AND id > ?", taskId,startID).Find(&taskDetails)
+	if rows.RowsAffected == 0 {
+		err = errors.New("The task is not finished yet, Or no match task details in DB,Please make sure the task_id is right...")
+		return
+	}
+
+	currentCount = len(taskDetails)
+
+	lastID = taskDetails[len(taskDetails)-1].Id
+
 	return
 }

@@ -2,7 +2,6 @@ package sshClient
 
 import (
 	"bytes"
-	"gatssh/models"
 )
 
 const (
@@ -64,6 +63,5 @@ type CreateTask struct {
 	SavePassword    bool   `json:"savePassword"`
 	UsePasswordInDB bool   `json:"usePasswordInDB"`
 	TaskChan        chan *Task
-	ResultChan      chan *models.TaskDetail
 }
 

@@ -13,7 +13,7 @@ func init() {
 	beego.Router("/loginAuth",&controllers.UserLogin{},"Post:LoginAuth")
 
 	beego.Router("/v1/quickStart",&controllers.GatSshQuickStart{},"post:QuickStart")
-	beego.Router("/v1/StartReceiveFormWS",&controllers.GatSshQuickStart{},"get:StartSendByWS")
-	beego.Router("/v1/queryTaskDetails",&controllers.QueryGatSshTaskDetails{})
+	//beego.Router("/v1/StartReceiveFormWS",&controllers.GatSshQuickStart{},"get:StartSendByWS")
+	beego.Router("/v1/queryTaskResults",&controllers.QueryGatSshTaskResults{})
 
 }

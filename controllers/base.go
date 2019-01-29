@@ -67,7 +67,7 @@ func (this *baseController) routeFilter() {
 		return
 	case "GatSshQuickStart":
 		return
-	case "QueryGatSshTaskDetails":
+	case "QueryGatSshTaskResults":
 		return
 	default:
 		this.Redirect("/login", 302)

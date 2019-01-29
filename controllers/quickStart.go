@@ -3,11 +3,7 @@ package controllers
 import (
 	"encoding/json"
 	"github.com/satori/go.uuid"
-	"github.com/gorilla/websocket"
-	"gatssh/models"
 	"gatssh/sshClient"
-	"gatssh/utils"
-	"errors"
 )
 
 type GatSshQuickStart struct {
@@ -39,7 +35,6 @@ func (this *GatSshQuickStart) QuickStart() {
 	//ct.UsePasswordInDB = false
 	//ct.SavePassword = false
 	ct.TaskChan = make(chan *sshClient.Task, len(ct.HostList))
-	ct.ResultChan = make(chan *models.TaskDetail, len(ct.HostList))
 
 	err = ct.StartNewTask()
 	if err != nil {
@@ -51,52 +46,3 @@ func (this *GatSshQuickStart) QuickStart() {
 	return
 }
 
-//Send data to the frontend using websocket
-func (this *GatSshQuickStart) StartSendByWS() {
-
-	if this.IsLogin != true {
-		this.Delete()
-		return
-	}
-
-	TaskId := this.GetString("taskId")
-
-	var upGrader = websocket.Upgrader{}
-	//Instantiate the websocket
-	ws, err := upGrader.Upgrade(this.Ctx.ResponseWriter, this.Ctx.Request, nil)
-	if err != nil {
-		utils.GatLog.Alert("WebSocket Upgrade: %v", err)
-		this.ServeJSON(40000, err)
-		return
-	}
-
-	defer ws.Close()
-	//Fetches the result queue from the global cache and listens on it
-	resultChan, ok := sshClient.ResultCatch.Load(TaskId)
-	if ok {
-
-		for i := 1; i <= cap(resultChan.(chan *models.TaskDetail)); i++ {
-
-			result := <-resultChan.(chan *models.TaskDetail)
-
-			result.IdInTask = i
-
-			err := ws.WriteJSON(result)
-			if err != nil {
-				utils.GatLog.Alert("WebSocket Write JSON error: %v", err)
-				break
-			}
-		}
-
-	} else {
-
-		err = errors.New("This task id is not correct:")
-		utils.GatLog.Alert("%v %v", err, TaskId)
-		this.ServeJSON(40000, err)
-		return
-	}
-
-	this.ServeJSON(20000, "Task results are all transmitted")
-
-	return
-}

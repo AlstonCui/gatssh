@@ -9,15 +9,10 @@ import (
 	"sync"
 )
 
-//Global cache for task execution results, key = taskId, value = ResultChan
-var ResultCatch = sync.Map{}
-
 var mutex sync.Mutex
 
 //start
 func (ct *CreateTask) StartNewTask() (err error) {
-
-	go StartTaskWorkPool(ct)
 	//Save task record
 	tr := models.TaskRecord{
 		TaskId:           ct.TaskId,
@@ -27,14 +22,18 @@ func (ct *CreateTask) StartNewTask() (err error) {
 		HostCount:        len(ct.HostList),
 	}
 	err = tr.SaveTask()
+	if err != nil{
+		return
+	}
 
+	go StartTaskWorkPool(ct)
 	return
 }
 
 //Create a work pool
 func StartTaskWorkPool(ct *CreateTask) {
 	//Put the result queue into the global cache
-	ResultCatch.Store(ct.TaskId, ct.ResultChan)
+	//ResultCatch.Store(ct.TaskId, ct.ResultChan)
 	//Break task into subtasks，and put it on the task queue.
 	for _, h := range ct.HostList {
 
@@ -53,18 +52,15 @@ func StartTaskWorkPool(ct *CreateTask) {
 	var wg sync.WaitGroup
 	//Create worker in work pool
 	for i := 0; i < ct.PoolSize; i++ {
-		go taskWorker(ct.TaskChan, ct.ResultChan, &wg)
+		go taskWorker(ct.TaskChan, &wg)
 	}
 
 	wg.Wait()
 
 	close(ct.TaskChan)
-	close(ct.ResultChan)
-
-	//ResultCatch.Delete(ct.TaskId)
 }
 
-func taskWorker(taskChan chan *Task, resultChan chan *models.TaskDetail, wg *sync.WaitGroup) {
+func taskWorker(taskChan chan *Task, wg *sync.WaitGroup) {
 	//Blocking and listening to the task queue
 	for t := range taskChan {
 
@@ -75,21 +71,24 @@ func taskWorker(taskChan chan *Task, resultChan chan *models.TaskDetail, wg *syn
 		client, t.SshError = newGatSshClient(t)
 
 		if t.SshError.Content != nil {
-			t.createTaskDetail(resultChan, wg)
+			t.createTaskDetail()
+			wg.Done()
 			continue
 		}
 
 		t.Standard, t.SshError = sshExecution(client, t.Cmd)
 		if t.SshError.Code != 0 {
-			t.createTaskDetail(resultChan, wg)
+			t.createTaskDetail()
+			wg.Done()
 			continue
 		}
 
-		t.createTaskDetail(resultChan, wg)
+		t.createTaskDetail()
+		wg.Done()
 	}
 }
 
-func (t *Task) createTaskDetail(resultChan chan *models.TaskDetail, wg *sync.WaitGroup) {
+func (t *Task) createTaskDetail() {
 
 	td := &models.TaskDetail{
 		TaskId:           t.TaskId,
@@ -102,17 +101,13 @@ func (t *Task) createTaskDetail(resultChan chan *models.TaskDetail, wg *sync.Wai
 		ResultErr:        fmt.Sprintln(t.SshError.Content),
 		ResultContent:    t.Standard.StdOut.String() + t.Standard.StdErr.String(),
 	}
-	//Put the result into the result queue
-	resultChan <- td
-
+	//Limit the rate of writing to DB,Because Sqlite does not support high concurrent writes.
 	mutex.Lock()
 	err := td.SaveTaskDetail()
 	mutex.Unlock()
 	if err != nil {
 		utils.GatLog.Warning("Save task details:", err)
 	}
-
-	wg.Done()
 
 	return
 }

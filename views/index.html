@@ -68,7 +68,7 @@
             <form class="form-horizontal">
                 <div class="col-sm-6">
                     <div class="panel panel-default">
-                        <div class="panel-heading">IP INPUT</div>
+                        <div class="panel-heading">HOST INPUT</div>
                         <div class="panel-body" style="min-height: 228px;">
                             <textarea id="iplist" class="form-control" rows="9"></textarea>
                         </div>
@@ -89,7 +89,8 @@
                             <div class="form-group">
                                 <label for="inputPassword" class="col-sm-2 control-label">Password</label>
                                 <div class="col-sm-10">
-                                    <input type="password" class="form-control" id="inputPassword"
+                                    <input type="text" onfocus="this.type='password'" class="form-control"
+                                           id="inputPassword"
                                            placeholder="Password">
                                 </div>
                             </div>
@@ -126,7 +127,9 @@
         <div class="row">
             <div>
                 <div class="panel panel-default">
-                    <div class="panel-heading">RESULT(<span id = "currentCountIP">0</span>/<span id = "totalCountIP">0</span>)</div>
+                    <div class="panel-heading">RESULT(<span id="currentCountIP">0</span>/<span
+                            id="totalCountIP">0</span>)
+                    </div>
                     <div class="panel-body">
 
                         <div class="input-group" style="width:100%;margin: 0 auto;">
@@ -142,10 +145,10 @@
                         <thead>
                         <tr>
                             <th style="width: 5%">#</th>
-                            <th style="width: 10%">IP<button id="func8" onclick="IPContent();" style="
+                            <th style="width: 10%">Host<button id="func8" onclick="IPContent();" style="
     border: 0;vertical-align: bottom; background: white"><img src="static/img/sf/file-text.svg" height="20" width="20"></button>
                             </th>
-                            <th style="width: 10%;margin:0 auto;">code</th>
+                            <th style="width: 10%;margin:0 auto;">Status</th>
                             <th style="width: 50%">Stdout</th>
                             <th style="width: 20%">Stderr</th>
                         </tr>
@@ -258,6 +261,7 @@
 
             //写入到HTML中
             $("#totalCountIP").text(totalHostCount);
+            $("#currentCountIP").text(0);
 
 
             $.ajax({
@@ -273,8 +277,8 @@
                 success: function (data) {
                     if (data.code == 20000) {
                         alert('任务提交成功');
-                        // getResult(data.data, hostList.length);
-                        webSocket(data.data)
+                        getResult(data.data, hostList.length);
+                        //webSocket(data.data)
 
 
                     } else {
@@ -321,30 +325,72 @@
         }
     }
 
+    function getResult(tid, totalCount) {
 
-    function webSocket(taskId) {
-        var ws = new WebSocket('ws://' + window.location.host + '/v1/StartReceiveFormWS?taskId=' + taskId);
+        var startId = 0;
+        var count = 0;
+        var tableIndex = 0;
+        var timeId = setInterval(function () {
 
-        ws.onmessage = function (e) {
+            $('#ResultContent').html('');
+            if (!tid) {
+                alert('必须传入taskId');
+                return false;
+            }
 
-            var v = JSON.parse(event.data);
-            var row = '<tr>' +
-                    '<td>' + v.IdInTask + '</td>' +
-                    '<td>' + v.Ip+":"+v.Port + '</td>' +
-                    '<td>' + v.ResultCode + '</td>' +
-                    '<td>' + v.ResultContent + '</td>' +
-                    '<td>' + v.ResultErr + '</td>' +
-                    '</tr>'
+            $.ajax({
+                url: '/v1/queryTaskResults',
+                type: 'post',
+                dataType: 'json',
+                data: {
+                    taskId: tid,
+                    startId: startId
+                },
 
-            $(row).prependTo($('#ResultContent'));
 
-            getCurrentIpCount();
+                success: function (data) {
 
-            console.dir(event);
+                    if (data.code == 20000) {
 
-        };
+                        startId = data.data.lastId;
+
+                        count += data.data.currentCount;
+
+                        $.each(data.data.taskDetails, function () {
+
+                            var v = this;
+                            var row = '<tr>' +
+                                    '<td>' + (++tableIndex) + '</td>' +
+                                    '<td>' + v.Ip + ":" + v.Port + '</td>' +
+                                    '<td>' + "code:"+v.ResultCode + '</td>' +
+                                    '<td>' + v.ResultContent + '</td>' +
+                                    '<td>' + v.ResultErr + '</td>' +
+                                    '</tr>';
+
+                            $(row).prependTo($('#ResultContent'));
+
+
+                        });
+                        getCurrentIpCount();
+
+                        if (count == totalCount) {
+                            window.clearInterval(timeId);
+                        }
+
+                    }
+                },
+                error: function () {
+                    console.log('通信异常');
+                    window.clearInterval(timeId);
+                }
+            })
+
+
+        }, 1000);
+
 
     }
+
 
     function tableFilter() {
         var keyword = document.getElementById("tableSearch").value.toLowerCase().split(" ");
@@ -398,11 +444,12 @@
     }
 
 
-    function getCurrentIpCount(){
-       var CurrentIpCount= $("#ResultContent tr:visible").length
+    function getCurrentIpCount() {
+        var CurrentIpCount = $("#ResultContent tr:visible").length
         //写入页面中
         $("#currentCountIP").text(CurrentIpCount)
     }
+
 
 </script>
 
