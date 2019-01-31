@@ -14,6 +14,8 @@ func init() {
 
 	beego.Router("/v1/quickStart",&controllers.GatSshQuickStart{},"post:QuickStart")
 	//beego.Router("/v1/StartReceiveFormWS",&controllers.GatSshQuickStart{},"get:StartSendByWS")
-	beego.Router("/v1/queryTaskResults",&controllers.QueryGatSshTaskResults{})
+	beego.Router("/v1/queryTaskResults",&controllers.QueryGatSshTaskResults{},"post:QueryTaskResults")
+	beego.Router("/v1/downloadExcel",&controllers.QueryGatSshTaskResults{},"get:DownloadExcel")
+
 
 }
