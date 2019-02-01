@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css" href="static/css/material-design.css">
     <link rel="stylesheet" type="text/css" href="static/css/small-n-flat.css">
     <link rel="stylesheet" type="text/css" href="static/css/font-awesome.min.css">
-    <title>Clearmin template</title>
+    <title>Gatssh</title>
 </head>
 
 <body class="cm-1-navbar">
@@ -22,7 +22,7 @@
             <div id="cm-menu-scroller">
                 <ul class="cm-menu-items" style="transform: translateY(0px);">
                     <li class="active"><a href="/" class="sf-house">QuickStart</a></li>
-
+                    <li class="active"><a href="/setting" class="sf-cog">Setting</a></li>
                 </ul>
             </div>
         </div>
@@ -50,7 +50,7 @@
                     <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-fw fa-cog"></i> Change password</a>
+                    <a href="/setting" ><i class="fa fa-fw fa-cog"></i> Setting</a>
                 </li>
                 <li>
                     <a href="login.html"><i class="fa fa-fw fa-sign-out"></i> Sign out</a>
@@ -454,7 +454,8 @@
         $("#ResultContent tr").each(function () {
             //list.push($(this).find("td").eq(1).html());
             if ($(this).is(':visible')) {
-                list += "<div style='margin-left: 20px'>" + $(this).find("td").eq(1).html() + "</div>";
+                list += $(this).find("td").eq(1).html()+"\n";
+                iplist = '<textarea class="form-control" rows="17">'+ list +'</textarea>'
             }
         });
         //自定页
@@ -466,7 +467,7 @@
             shift: 2,
             area: ['300px', '400px'], //宽高
             shadeClose: true, //开启遮罩关闭
-            content: list,
+            content: iplist,
             title: "IP"
         });
     }
@@ -477,6 +478,21 @@
         //写入页面中
         $("#currentCountIP").text(CurrentIpCount)
     }
+
+function changePassword() {
+
+    layer.open({
+        type: 1,
+        skin: 'layui-layer-demo', //样式类名
+        closeBtn: 0, //不显示关闭按钮
+        shift: 2,
+        area: ['500px', '300px'], //宽高
+        shadeClose: true, //开启遮罩关闭
+        content: "a",
+        title: "Change Password"
+    });
+
+}
 
 
 

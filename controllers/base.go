@@ -14,7 +14,9 @@ const (
 
 var HTTPCODE = map[int]string{
 	20000: "OK",
+	30000: "Authentication failed",
 	40000: "Bad Request",
+	50000: "Internal Server Error",
 }
 
 type baseResponse struct {
@@ -38,7 +40,7 @@ func (this *baseController) Prepare() {
 	sKey := this.GetSession(GAT_SESSION_KEY)
 	sUser := this.GetSession(GAT_SESSION_USER)
 
-	if sKey == nil || sUser == nil{
+	if sKey == nil || sUser == nil {
 		this.routeFilter()
 		return
 	}
@@ -69,6 +71,8 @@ func (this *baseController) routeFilter() {
 		return
 	case "QueryGatSshTaskResults":
 		return
+	case "SettingController":
+		return
 	default:
 		this.Redirect("/login", 302)
 		this.ServeJSON(40000, nil)
@@ -93,4 +97,3 @@ func (this *baseController) ServeJSON(code int, data interface{}) {
 	this.Data["json"] = msg
 	this.Controller.ServeJSON()
 }
-

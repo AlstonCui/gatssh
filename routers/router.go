@@ -17,5 +17,7 @@ func init() {
 	beego.Router("/v1/queryTaskResults",&controllers.QueryGatSshTaskResults{},"post:QueryTaskResults")
 	beego.Router("/v1/downloadExcel",&controllers.QueryGatSshTaskResults{},"get:DownloadExcel")
 
+	beego.Router("/setting",&controllers.SettingController{},"get:Setting")
+	beego.Router("/v1/ChangePassword",&controllers.SettingController{},"post:ChangePassword")
 
 }

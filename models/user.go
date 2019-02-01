@@ -29,10 +29,19 @@ func init() {
 	}
 }
 
-func (this *User) AuthUserAndPass() (ok bool, uid string) {
+func GetUid(username string) string {
+	var user User
+	db.Where("username =?", username).Find(&user)
+	return user.Uid
+}
+
+func (this *User) AuthUserAndPass() (uid string, ok bool) {
 
 	var user User
-	row := db.Where("username = ? AND password = ?", this.Username, this.Password).Find(&user)
+
+	pass := utils.Md5Sum(this.Password)
+
+	row := db.Where("username = ? AND password = ?", this.Username, pass).Find(&user)
 
 	if row.RowsAffected != 0 {
 		ok = true
@@ -44,8 +53,12 @@ func (this *User) AuthUserAndPass() (ok bool, uid string) {
 	return
 }
 
-func GetUid(username string) string {
-	var user User
-	db.Where("username =?", username).Find(&user)
-	return user.Uid
+func (this *User) UpdatePassword(uid string, newPass string) (err error) {
+
+	err = db.Model(this).Where("uid = ?", uid).Update("password", utils.Md5Sum(newPass)).Error
+	if err != nil {
+		return
+	}
+
+	return
 }
